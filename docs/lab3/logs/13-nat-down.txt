@@ -1,0 +1,7 @@
+$ cd timecapsule && scripts/nat-down.sh
+step 1: удаление маршрута 0.0.0.0/0 из rtb-02c5a2fd7505f6bd5
+step 2: удаление NAT Gateway nat-0a69f13f0f11a5e11
+step 3: ожидание состояния deleted
+step 4: освобождение Elastic IP eipalloc-03807b88417ff3955
+        адрес освобождён (попытка 1)
+Готово. NAT и Elastic IP удалены.

@@ -1,0 +1,3 @@
+$ curl -s -m 8 -o /dev/null -w 'сайт web: HTTP %{http_code}\n' http://18.153.83.252; ssh -o ConnectTimeout=8 bastion 'echo ssh bastion: ok'
+сайт web: HTTP 200
+ssh bastion: ok

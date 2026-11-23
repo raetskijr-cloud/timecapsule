@@ -1,0 +1,6 @@
+$ [web] PGPASSWORD=******** psql -h 10.14.10.165 -U student -d lab3 -c "SELECT version();"
+                                                    version                                                    
+---------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.16 on x86_64-amazon-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-5), 64-bit
+(1 row)
+

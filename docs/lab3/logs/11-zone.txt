@@ -1,0 +1,6 @@
+$ tools/zone.sh
+[1/3] create-hosted-zone timecapsule.internal (Private, VPC timecapsule-dev-vpc)
+    zone: Z032669212RURLJIPC8JK
+[2/3] теги зоны
+[3/3] запись db.timecapsule.internal A 10.14.10.165 TTL 60
+/change/C09699082ETVOUQTJQ7X3	PENDING

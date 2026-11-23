@@ -1,0 +1,62 @@
+$ ssh app ./deploy.sh
+[1/5] Забираем новый код из GitHub
+From https://github.com/raetskijr-cloud/timecapsule
+   653cac1..873c329  main       -> origin/main
+Updating 653cac1..873c329
+Fast-forward
+ README.md                               | 707 ++++++++++++++++++++++----------
+ docs/APP_README.md                      | 277 +++++++++++++
+ docs/lab2/README.md                     |  84 ++--
+ docs/lab2/figures/fig-L2-02-5.jpg       | Bin 0 -> 102042 bytes
+ docs/lab2/figures/fig-L2-06-1.jpg       | Bin 0 -> 61582 bytes
+ docs/lab2/figures/fig-L2-13-1.jpg       | Bin 0 -> 76549 bytes
+ docs/lab2/figures/fig-L2-13-2.png       | Bin 0 -> 327091 bytes
+ docs/lab2/figures/fig-L2-13-3.jpg       | Bin 0 -> 80091 bytes
+ docs/lab2/figures/fig-L2-13-4.png       | Bin 0 -> 91951 bytes
+ docs/lab2/figures/fig-L2-13-5.jpg       | Bin 0 -> 57238 bytes
+ docs/lab2/figures/fig-L2-13-6.jpg       | Bin 0 -> 58970 bytes
+ docs/lab2/figures/fig-L2-13-7.png       | Bin 0 -> 37464 bytes
+ docs/lab2/figures/fig-L2-13-8.png       | Bin 0 -> 92237 bytes
+ docs/lab2/figures/fig-L2-13-9.jpg       | Bin 0 -> 80055 bytes
+ docs/lab2/logs/13-broken-curl.txt       |   5 +
+ docs/lab2/logs/13-db.txt                |   5 +
+ docs/lab2/logs/13-deploy-broken.txt     |  20 +
+ docs/lab2/logs/13-deploy-v2.txt         |  62 +++
+ docs/lab2/logs/13-revert-deploy.txt     |  20 +
+ docs/lab2/logs/13-timeline-attempt1.txt |   9 +
+ docs/lab2/logs/13-timeline.txt          |   7 +
+ docs/lab2/logs/13-watch.txt             |  17 +
+ views/layout.php                        |   2 +-
+ 23 files changed, 950 insertions(+), 265 deletions(-)
+ create mode 100644 docs/APP_README.md
+ create mode 100644 docs/lab2/figures/fig-L2-02-5.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-06-1.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-13-1.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-13-2.png
+ create mode 100644 docs/lab2/figures/fig-L2-13-3.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-13-4.png
+ create mode 100644 docs/lab2/figures/fig-L2-13-5.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-13-6.jpg
+ create mode 100644 docs/lab2/figures/fig-L2-13-7.png
+ create mode 100644 docs/lab2/figures/fig-L2-13-8.png
+ create mode 100644 docs/lab2/figures/fig-L2-13-9.jpg
+ create mode 100644 docs/lab2/logs/13-broken-curl.txt
+ create mode 100644 docs/lab2/logs/13-db.txt
+ create mode 100644 docs/lab2/logs/13-deploy-broken.txt
+ create mode 100644 docs/lab2/logs/13-deploy-v2.txt
+ create mode 100644 docs/lab2/logs/13-revert-deploy.txt
+ create mode 100644 docs/lab2/logs/13-timeline-attempt1.txt
+ create mode 100644 docs/lab2/logs/13-timeline.txt
+ create mode 100644 docs/lab2/logs/13-watch.txt
+[2/5] Устанавливаем библиотеки
+Installing dependencies from lock file
+Verifying lock file contents can be installed on current platform.
+Nothing to install, update or remove
+Generating optimized autoload files
+[3/5] Создаём недостающие таблицы
+6 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+Database is ready (db.timecapsule.internal).
+[4/5] Перезапускаем PHP-FPM
+[5/5] Фиксируем результат
+Готово. На сервере коммит: 873c329 [LR3] Show LR3 in footer

@@ -1,0 +1,6 @@
+$ tools/nacl.sh off; curl -s -m 8 -o /dev/null -w 'сайт web: HTTP %{http_code}\n' http://18.153.83.252; ssh -o ConnectTimeout=8 bastion 'echo ssh bastion: ok'
+правило 90 удалено
+100	-1	allow	0.0.0.0/0
+32767	-1	deny	0.0.0.0/0
+сайт web: HTTP 200
+ssh bastion: ok

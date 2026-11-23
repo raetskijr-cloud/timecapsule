@@ -1,0 +1,10 @@
+$ [app] stat -c "%U:%G %a %n" /var/www/timecapsule/.env; sudo chgrp apache /var/www/timecapsule/.env; stat -c "%U:%G %a %n" /var/www/timecapsule/.env; sudo systemctl reload php-fpm
+ec2-user:ec2-user 640 /var/www/timecapsule/.env
+ec2-user:apache 640 /var/www/timecapsule/.env
+$ curl -s http://63.182.78.191/health
+{"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+$ curl -s http://63.182.78.191/ | grep -c "Hello from the past"
+0
+$ [app] sudo systemctl is-enabled postgresql; systemctl is-active postgresql
+disabled
+inactive

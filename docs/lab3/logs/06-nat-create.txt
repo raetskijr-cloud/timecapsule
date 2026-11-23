@@ -1,0 +1,10 @@
+$ tools/part1-nat-up.sh
+[1/4] Elastic IP (как кнопка Allocate Elastic IP в форме NAT Gateway, без тегов)
+    eipalloc-0a0fd2f491cd1f8ca
+[2/4] NAT Gateway timecapsule-dev-nat-a (Zonal, public-a, Public)
+    nat-0a741390e44ef0c59
+[3/4] Подпись Elastic IP: Name=timecapsule-dev-nat-a-eip и обязательные теги
+    ожидание состояния Available ...
+[4/4] Маршрут 0.0.0.0/0 -> nat-0a741390e44ef0c59 в private-rt
+True
+NAT public IP: 63.186.2.222

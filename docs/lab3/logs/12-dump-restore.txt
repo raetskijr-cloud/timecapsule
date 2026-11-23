@@ -1,0 +1,35 @@
+$ [app] cd ~ && pg_dump -h localhost -U timecapsule -d timecapsule -f timecapsule.sql && ls -l timecapsule.sql && grep -c "^COPY\|^INSERT" timecapsule.sql
+-rw-rw-r--. 1 ec2-user ec2-user 7672 Nov 23 22:43 timecapsule.sql
+3
+$ [app] PGPASSWORD=******** psql -h db.timecapsule.internal -U timecapsule -d timecapsule -f ~/timecapsule.sql 2>&1 | tail -25
+ setval 
+--------
+      1
+(1 row)
+
+ setval 
+--------
+      1
+(1 row)
+
+ setval 
+--------
+      2
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+$ [app] PGPASSWORD=******** psql -h db.timecapsule.internal -U timecapsule -d timecapsule -c "SELECT id, title FROM capsules;"
+ id |        title        
+----+---------------------
+  1 | Hello from the past
+(1 row)
+

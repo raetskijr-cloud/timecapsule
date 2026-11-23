@@ -1,0 +1,4 @@
+$ ssh bastion hostname; ssh web hostname; ssh db hostname
+ip-10-14-1-17.eu-central-1.compute.internal
+ip-10-14-0-227.eu-central-1.compute.internal
+ip-10-14-10-165.eu-central-1.compute.internal

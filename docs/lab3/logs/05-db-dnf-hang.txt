@@ -1,0 +1,11 @@
+$ ssh db 'sudo timeout -s INT 60 dnf -y install postgresql16-server; echo "прервано, код выхода: $?"'
+Amazon Linux 2023 repository                    0.0  B/s |   0  B     00:00    
+Amazon Linux 2023 Kernel Livepatch repository   0.0  B/s |   0  B     00:00    
+No match for argument: postgresql16-server
+Errors during downloading metadata for repository 'amazonlinux':
+  - Curl error (28): Timeout was reached for https://al2023-repos-eu-central-1-de612dc2.s3.dualstack.eu-central-1.amazonaws.com/core/mirrors/2023.12.20261120/x86_64/mirror.list?instance_id=i-07e6ce6c6612196ea [Connection timed out after 30000 milliseconds]
+Error: Failed to download metadata for repo 'amazonlinux': Cannot prepare internal mirrorlist: Interrupted by signal
+Error: Failed to download metadata for repo 'kernel-livepatch': Cannot prepare internal mirrorlist: Interrupted by signal
+Ignoring repositories: amazonlinux, kernel-livepatch
+Error: Unable to find a match: postgresql16-server
+прервано, код выхода: 124

@@ -1,0 +1,21 @@
+$ ssh app ./deploy.sh
+[1/5] Забираем новый код из GitHub
+From https://github.com/raetskijr-cloud/timecapsule
+   653cac1..873c329  main       -> origin/main
+Updating 653cac1..873c329
+Fast-forward
+  ... (список файлов отчёта ЛР2 сокращён, полный вывод: 13-deploy-lr3.full.txt)
+ views/layout.php                        |   2 +-
+ 23 files changed, 950 insertions(+), 265 deletions(-)
+[2/5] Устанавливаем библиотеки
+Installing dependencies from lock file
+Verifying lock file contents can be installed on current platform.
+Nothing to install, update or remove
+Generating optimized autoload files
+[3/5] Создаём недостающие таблицы
+6 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+Database is ready (db.timecapsule.internal).
+[4/5] Перезапускаем PHP-FPM
+[5/5] Фиксируем результат
+Готово. На сервере коммит: 873c329 [LR3] Show LR3 in footer

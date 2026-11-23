@@ -1,0 +1,10 @@
+$ [db] curl -s https://checkip.amazonaws.com
+3.79.66.154
+$ [db] sudo dnf -y update 2>&1 | tail -20
+Last metadata expiration check: 0:14:58 ago on Mon Nov 23 22:32:23 2026.
+Dependencies resolved.
+Nothing to do.
+Complete!
+$ [db] sudo dnf -y check-update --security 2>&1 | tail -3; echo "код: $?"
+Last metadata expiration check: 0:15:00 ago on Mon Nov 23 22:32:23 2026.
+код: 0

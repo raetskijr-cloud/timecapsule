@@ -1,0 +1,12 @@
+$ tools/show-net.sh sg
+timecapsule-dev-bastion-sg | SSH access to bastion from admin IP
+   in 22/tcp <- 89.149.x.x/32 (My IP)
+   out: all traffic (по умолчанию)
+timecapsule-dev-web-sg | HTTP from internet, SSH from bastion
+   in 80/tcp <- 0.0.0.0/0 (HTTP from anywhere)
+   in 22/tcp <- sg-09ed2cf34cce84622 (SSH from bastion-sg)
+   out: all traffic (по умолчанию)
+timecapsule-dev-db-sg | PostgreSQL from web-sg, SSH from bastion
+   in 5432/tcp <- sg-0abcdd1d5c23d1b1a (PostgreSQL from web-sg)
+   in 22/tcp <- sg-09ed2cf34cce84622 (SSH from bastion-sg)
+   out: all traffic (по умолчанию)

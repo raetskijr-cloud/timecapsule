@@ -1,0 +1,12 @@
+$ tools/part1-nat-down.sh
+[1/5] delete-nat-gateway nat-0a741390e44ef0c59
+nat-0a741390e44ef0c59
+nat-0a741390e44ef0c59	deleted
+[2/5] маршруты private-rt (ожидается Blackhole)
+10.14.0.0/16	None	active
+0.0.0.0/0	nat-0a741390e44ef0c59	blackhole
+[3/5] delete-route
+10.14.0.0/16	local	active
+[4/5] release-address eipalloc-0a0fd2f491cd1f8ca
+    адрес освобождён (попытка 1)
+[5/5] Elastic IP в аккаунте: 0

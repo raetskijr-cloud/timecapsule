@@ -1,0 +1,27 @@
+[шаг 1] VPC 10.14.0.0/16, DNS resolution и DNS hostnames
+    VPC=vpc-0e546b4458d635288
+[шаг 2] Подсети
+    PUB_A=subnet-0f0cc660c40804fdb
+    PUB_B=subnet-0c05a5199b2eff0e5
+    PRV_A=subnet-01f453194252b0c3d
+    PRV_B=subnet-01d369be50c8c821b
+[шаг 3] Internet Gateway
+    IGW=igw-0165e7ce85512750d
+[шаг 4] Таблицы маршрутов и связи
+    PUB_RT=rtb-02fe4b18c294a8a9d
+    PRV_RT=rtb-02c5a2fd7505f6bd5
+[шаг 5] Auto-assign public IPv4 для public-a и public-b
+[шаг 6] Теги на объекты VPC, созданные автоматически (main RT, default NACL, default SG)
+    MAIN_RT=rtb-07fa3d6a6c7dff403
+    NACL=acl-057ae245bc29274d1
+    DEFAULT_SG=sg-075ca0496d3a56111
+[шаг 7] Security Group (bastion-sg, web-sg, db-sg)
+    SG_BASTION=sg-09ed2cf34cce84622
+    SG_WEB=sg-0abcdd1d5c23d1b1a
+    SG_DB=sg-0a9631c849b5bbdb5
+[шаг 8] Экземпляры bastion, web, db (AL2023, t3.micro)
+    AMI_BASE=ami-0b03c2ca9a940f9ab
+    BASTION=i-00b98df1a7e3c039b
+    WEB=i-099bee676a9507e44
+    DB=i-07e6ce6c6612196ea
+Готово.

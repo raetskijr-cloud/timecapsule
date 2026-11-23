@@ -1,0 +1,6 @@
+$ ssh db 'sudo dnf -y update 2>&1 | tail -15'
+Amazon Linux 2023 repository                     63 MB/s |  91 MB     00:01    
+Amazon Linux 2023 Kernel Livepatch repository   1.0 MB/s | 122 kB     00:00    
+Dependencies resolved.
+Nothing to do.
+Complete!

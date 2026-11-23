@@ -14,3 +14,17 @@
 | Журнал выпусков | `~/deploy.log` на сервере |
 | Остановка | `aws ec2 stop-instances --instance-ids <id> --region eu-central-1`; экземпляр не удаляется |
 | Если SSH не пускает | в Security Group `webserver-sg` заменить источник правила SSH на текущий `My IP` |
+
+## LR3. VPC `timecapsule-dev-vpc`
+
+| Действие | Команда или шаги |
+| --- | --- |
+| Запуск (порядок) | `db`, затем `app`, затем `bastion`: `aws ec2 start-instances --instance-ids <id>` |
+| После запуска | `HostName` bastion в `~/.ssh/config` заменить на новый публичный IP; приватные адреса `app` и `db` не меняются |
+| Проверка | `curl http://<EIP app>/health` возвращает `"db":"ok"` |
+| Выпуск версии | `git push`, затем `ssh app ./deploy.sh` (через bastion, `ProxyJump`) |
+| Правка `.env` на сервере | после `sed -i` выполнить `sudo chgrp apache /var/www/timecapsule/.env` и `sudo systemctl reload php-fpm` |
+| Обновление пакетов на `db` | `scripts/nat-up.sh`, `ssh db`, `sudo dnf -y update`, `scripts/nat-down.sh` (CloudShell или Git Bash; нужны `jq` и AWS CLI) |
+| Если `nat-down.sh` прерван | запустить повторно: идентификаторы лежат в `scripts/nat-state.json`; иначе удалить вручную маршрут, NAT Gateway, затем Elastic IP |
+| Остановка | остановить `bastion`, `app`, `db`; Elastic IP `timecapsule-dev-app-eip` остаётся привязанным (оплата $0,005 в час) |
+| Контроль платного | `aws ec2 describe-nat-gateways --filter Name=state,Values=available` пусто; `aws ec2 describe-addresses` содержит только адрес `app` |

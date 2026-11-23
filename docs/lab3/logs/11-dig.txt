@@ -1,0 +1,12 @@
+$ aws route53 list-resource-record-sets --hosted-zone-id Z032669212RURLJIPC8JK
+  timecapsule.internal.	NS	172800	ns-1536.awsdns-00.co.uk.
+  timecapsule.internal.	SOA	900	ns-1536.awsdns-00.co.uk. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400
+  db.timecapsule.internal.	A	60	10.14.10.165
+$ [app] dig +short db.timecapsule.internal
+10.14.10.165
+$ dig +short db.timecapsule.internal   # ноутбук
+(пустой ответ, код 0)
+$ nslookup db.timecapsule.internal   # ноутбук
+
+** server can't find db.timecapsule.internal: NXDOMAIN
+

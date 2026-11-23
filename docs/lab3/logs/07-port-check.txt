@@ -1,0 +1,4 @@
+$ [web] timeout 5 bash -c "</dev/tcp/10.14.10.165/5432" && echo open || echo closed
+open
+$ [bastion] timeout 5 bash -c "</dev/tcp/10.14.10.165/5432" && echo open || echo closed
+closed

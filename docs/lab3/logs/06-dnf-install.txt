@@ -1,0 +1,16 @@
+$ ssh db 'sudo dnf -y install postgresql16-server 2>&1 | tail -15'
+  Running scriptlet: postgresql16-server-16.16-1.amzn2023.0.1.x86_64        4/4 
+  Installing       : postgresql16-server-16.16-1.amzn2023.0.1.x86_64        4/4 
+  Running scriptlet: postgresql16-server-16.16-1.amzn2023.0.1.x86_64        4/4 
+  Verifying        : libicu-67.1-7.amzn2023.0.4.x86_64                      1/4 
+  Verifying        : postgresql16-16.16-1.amzn2023.0.1.x86_64               2/4 
+  Verifying        : postgresql16-private-libs-16.16-1.amzn2023.0.1.x86_6   3/4 
+  Verifying        : postgresql16-server-16.16-1.amzn2023.0.1.x86_64        4/4 
+
+Installed:
+  libicu-67.1-7.amzn2023.0.4.x86_64                                             
+  postgresql16-16.16-1.amzn2023.0.1.x86_64                                      
+  postgresql16-private-libs-16.16-1.amzn2023.0.1.x86_64                         
+  postgresql16-server-16.16-1.amzn2023.0.1.x86_64                               
+
+Complete!

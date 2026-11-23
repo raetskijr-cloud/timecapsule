@@ -1,0 +1,9 @@
+$ aws ec2 associate-address --instance-id i-030783e43288ed6cb --allocation-id eipalloc-00b690ad9a1b4f162
+eipassoc-070c1e98ce73dc66f
+$ aws ec2 describe-addresses --allocation-ids eipalloc-00b690ad9a1b4f162
+  63.182.78.191	i-030783e43288ed6cb	10.14.0.11
+$ [app] sudo sed -i "s#^APP_URL=.*#APP_URL=http://63.182.78.191#" /var/www/timecapsule/.env; grep ^APP_URL /var/www/timecapsule/.env; sudo systemctl reload php-fpm; echo reload: $?
+APP_URL=http://63.182.78.191
+reload: 0
+$ curl -s http://63.182.78.191/health
+{"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}

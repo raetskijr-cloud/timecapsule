@@ -1,0 +1,8 @@
+$ tools/show-net.sh vpc
+vpc-0e546b4458d635288	10.14.0.0/16	available
+enableDnsHostnames:True
+enableDnsSupport: True
+timecapsule-dev-public-a   eu-central-1a  10.14.0.0/24   249  True
+timecapsule-dev-public-b   eu-central-1b  10.14.1.0/24   250  True
+timecapsule-dev-private-a  eu-central-1a  10.14.10.0/24  250  False
+timecapsule-dev-private-b  eu-central-1b  10.14.11.0/24  251  False

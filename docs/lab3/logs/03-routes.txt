@@ -1,0 +1,10 @@
+$ tools/show-net.sh routes
+timecapsule-dev-public-rt
+  связь: timecapsule-dev-public-a
+  связь: timecapsule-dev-public-b
+  маршрут: 10.14.0.0/16	local	active
+  маршрут: 0.0.0.0/0	igw-0165e7ce85512750d	active
+timecapsule-dev-private-rt
+  связь: timecapsule-dev-private-b
+  связь: timecapsule-dev-private-a
+  маршрут: 10.14.0.0/16	local	active

@@ -1,0 +1,12 @@
+$ [app] cd /var/www/timecapsule && sed -i "s/^DB_HOST=.*/DB_HOST=db.timecapsule.internal/; s/^DB_PASSWORD=.*/DB_PASSWORD=********/" .env && grep -E "^DB_(HOST|USER|NAME)" .env && grep -c "^DB_PASSWORD=" .env && sudo systemctl reload php-fpm && echo reload: ok
+DB_HOST=db.timecapsule.internal
+DB_NAME=timecapsule
+DB_USER=timecapsule
+1
+reload: ok
+$ [app] sudo systemctl disable --now postgresql; systemctl is-active postgresql
+Removed "/etc/systemd/system/multi-user.target.wants/postgresql.service".
+inactive
+$ curl -s http://63.182.78.191/health
+{"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, DB_USER and DB_PASSWORD.","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+$ curl -s http://63.182.78.191/ | grep -o "Hello from the past"

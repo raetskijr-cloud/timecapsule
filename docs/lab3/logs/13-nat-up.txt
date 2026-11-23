@@ -1,0 +1,9 @@
+$ cd timecapsule && scripts/nat-up.sh
+step 1: выделение Elastic IP (timecapsule-dev-nat-a-eip)
+        AllocationId: eipalloc-03807b88417ff3955
+step 2: создание NAT Gateway timecapsule-dev-nat-a в public-a
+        NatGatewayId: nat-0a69f13f0f11a5e11
+step 3: ожидание состояния available (обычно 1-3 минуты)
+step 4: маршрут 0.0.0.0/0 -> nat-0a69f13f0f11a5e11 в private-rt
+step 5: состояние сохранено в nat-state.json
+Готово. NAT nat-0a69f13f0f11a5e11 доступен, внешний адрес 3.79.66.154. Не забудьте scripts/nat-down.sh (NAT оплачивается почасово).

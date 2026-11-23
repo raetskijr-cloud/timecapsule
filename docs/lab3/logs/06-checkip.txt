@@ -1,0 +1,3 @@
+$ ssh db 'curl -s https://checkip.amazonaws.com'; echo 'NAT Elastic IP:' $(aws ec2 describe-addresses --allocation-ids $EIP1 --query 'Addresses[0].PublicIp' --output text)
+63.186.2.222
+NAT Elastic IP: 63.186.2.222

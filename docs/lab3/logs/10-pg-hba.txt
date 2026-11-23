@@ -1,0 +1,17 @@
+$ [db] sudo -u postgres psql -c "CREATE USER timecapsule WITH PASSWORD '********';"
+CREATE ROLE
+$ [db] sudo -u postgres psql -c "CREATE DATABASE timecapsule OWNER timecapsule;"
+CREATE DATABASE
+$ [db] sudo sed -i "s#^host  all  all  10.14.0.0/24  scram-sha-256#host  timecapsule  timecapsule  10.14.0.0/24  scram-sha-256#" /var/lib/pgsql/data/pg_hba.conf; sudo tail -2 /var/lib/pgsql/data/pg_hba.conf
+host    replication     all             ::1/128                 ident
+host  timecapsule  timecapsule  10.14.0.0/24  scram-sha-256
+$ [db] sudo systemctl restart postgresql; systemctl is-active postgresql
+active
+$ [app] PGPASSWORD=******** psql -h 10.14.10.165 -U timecapsule -d timecapsule -c "SELECT current_user, current_database();"
+ current_user | current_database 
+--------------+------------------
+ timecapsule  | timecapsule
+(1 row)
+
+$ [app] PGPASSWORD=******** psql -h 10.14.10.165 -U student -d lab3 -c "SELECT 1;" 2>&1 | tail -1
+psql: error: connection to server at "10.14.10.165", port 5432 failed: FATAL:  no pg_hba.conf entry for host "10.14.0.11", user "student", database "lab3", no encryption

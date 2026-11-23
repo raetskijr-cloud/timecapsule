@@ -1,0 +1,14 @@
+$ [db] sudo postgresql-setup --initdb
+ * Initializing database in '/var/lib/pgsql/data'
+ * Initialized, logs are in /var/lib/pgsql/initdb_postgresql.log
+$ [db] sudo sed -i "s/^#listen_addresses = .localhost./listen_addresses = '*'/" /var/lib/pgsql/data/postgresql.conf; grep -n "^listen_addresses" /var/lib/pgsql/data/postgresql.conf
+grep: /var/lib/pgsql/data/postgresql.conf: Permission denied
+$ [db] echo "host  all  all  10.14.0.0/24  scram-sha-256" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+host  all  all  10.14.0.0/24  scram-sha-256
+$ [db] sudo systemctl enable --now postgresql; systemctl is-active postgresql
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /usr/lib/systemd/system/postgresql.service.
+active
+$ [db] sudo -u postgres psql -c "CREATE USER student WITH PASSWORD '********';"
+CREATE ROLE
+$ [db] sudo -u postgres psql -c "CREATE DATABASE lab3 OWNER student;"
+CREATE DATABASE

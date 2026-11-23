@@ -1,0 +1,11 @@
+$ tools/nacl.sh on; curl -s -m 8 -o /dev/null -w 'сайт web: HTTP %{http_code}\n' http://18.153.83.252; echo curl exit: $?; ssh -o ConnectTimeout=8 bastion 'echo ssh bastion: ok'; echo ssh exit: $?; echo '--- второй источник: экземпляр webserver ЛР2 (default VPC), другой публичный адрес'; ssh -F /dev/null -i $KEY -o StrictHostKeyChecking=accept-new -o LogLevel=ERROR -o UserKnownHostsFile=secrets/known_hosts ec2-user@3.69.52.43 "curl -s -m 8 -o /dev/null -w 'сайт web с webserver: HTTP %{http_code}\n' http://18.153.83.252"
+правило 90 создано: Deny all 89.149.x.x/32
+90	-1	deny	89.149.x.x/32
+100	-1	allow	0.0.0.0/0
+32767	-1	deny	0.0.0.0/0
+сайт web: HTTP 000
+curl exit: 28
+ssh: connect to host 3.68.190.61 port 22: Operation timed out
+ssh exit: 255
+--- второй источник: экземпляр webserver ЛР2 (default VPC), другой публичный адрес
+сайт web с webserver: HTTP 200
