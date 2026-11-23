@@ -1,0 +1,3 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 './deploy.sh --dry-run'
+[1/5] Проверка удалённого репозитория (git fetch), без изменения файлов
+Пробный запуск завершён. На сервере коммит: 3bc70c6 [LR2] Add console figures 1-3, 5

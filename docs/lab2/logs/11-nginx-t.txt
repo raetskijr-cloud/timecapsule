@@ -1,0 +1,7 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 'grep ^upload_max_filesize /etc/php.ini; sudo nginx -t; sudo systemctl enable --now php-fpm; sudo systemctl restart nginx; systemctl is-active php-fpm nginx'
+upload_max_filesize = 6M
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+Created symlink /etc/systemd/system/multi-user.target.wants/php-fpm.service → /usr/lib/systemd/system/php-fpm.service.
+active
+active

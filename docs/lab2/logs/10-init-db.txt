@@ -1,0 +1,2 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 'cd /var/www/timecapsule && php bin/init-db.php'
+Database is ready (localhost).

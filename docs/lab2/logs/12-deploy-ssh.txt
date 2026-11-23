@@ -1,0 +1,15 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 ./deploy.sh
+[1/5] Забираем новый код из GitHub
+Already up to date.
+[2/5] Устанавливаем библиотеки
+Installing dependencies from lock file
+Verifying lock file contents can be installed on current platform.
+Nothing to install, update or remove
+Generating optimized autoload files
+6 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+[3/5] Создаём недостающие таблицы
+Database is ready (localhost).
+[4/5] Перезапускаем PHP-FPM
+[5/5] Фиксируем результат
+Готово. На сервере коммит: 3bc70c6 [LR2] Add console figures 1-3, 5

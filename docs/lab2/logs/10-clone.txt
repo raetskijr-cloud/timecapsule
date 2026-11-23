@@ -1,0 +1,16 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 'git clone https://github.com/raetskijr-cloud/timecapsule.git /var/www/timecapsule && cd /var/www/timecapsule && ls'
+Cloning into '/var/www/timecapsule'...
+Dockerfile
+README.md
+bin
+composer.json
+composer.lock
+database
+deploy
+docker
+docker-compose.yml
+docs
+public
+src
+storage
+views

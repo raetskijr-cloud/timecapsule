@@ -1,0 +1,9 @@
+$ curl -si http://63.177.114.121/health
+HTTP/1.1 200 OK
+Server: nginx/1.30.7
+Date: Mon, 23 Nov 2026 21:11:03 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{"status":"ok","db":"ok","hostname":"ip-172-31-9-163.eu-central-1.compute.internal"}

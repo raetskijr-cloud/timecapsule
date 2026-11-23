@@ -1,0 +1,4 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 'cd /var/www/timecapsule && chmod 640 .env && sudo chgrp apache .env && sudo chown -R apache:apache storage && ls -l .env && ls -ld storage && git status --short | wc -l'
+-rw-r-----. 1 ec2-user apache 238 Nov 23 21:10 .env
+drwxrwxr-x. 4 apache apache 37 Nov 23 21:10 storage
+0

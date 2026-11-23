@@ -1,0 +1,13 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@63.177.114.121 'cd /var/www/timecapsule && composer install --no-dev --optimize-autoloader 2>&1 | tail -n 12'
+ 6/6 [============================] 100%
+  - Installing symfony/polyfill-php80 (v1.37.0): Extracting archive
+  - Installing symfony/polyfill-mbstring (v1.38.2): Extracting archive
+  - Installing symfony/polyfill-ctype (v1.37.0): Extracting archive
+  - Installing phpoption/phpoption (1.10.0): Extracting archive
+  - Installing graham-campbell/result-type (v1.2.0): Extracting archive
+  - Installing vlucas/phpdotenv (v5.7.0): Extracting archive
+ 0/6 [>---------------------------]   0%
+ 6/6 [============================] 100%
+Generating optimized autoload files
+6 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
