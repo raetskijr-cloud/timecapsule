@@ -1,0 +1,7 @@
+21:29:37  break: pushed bf76af7  (T0, начало простоя)
+21:29:42  break: deployed (сломанный код на сервере)
+21:29:45  break: probed
+21:29:57  revert: pushed 653cac1
+21:30:01  revert: deployed
+21:30:01  revert: GET /login -> HTTP 200
+21:30:01  revert: сайт восстановлен (T1, конец простоя)

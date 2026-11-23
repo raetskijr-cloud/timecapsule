@@ -1,0 +1,5 @@
+$ for p in / /login /health; do curl -s -o /dev/null -w "$p  HTTP %{http_code}\n" http://63.177.114.121$p; done; curl -s http://63.177.114.121/health
+/  HTTP 302
+/login  HTTP 500
+/health  HTTP 200
+{"status":"ok","db":"ok","hostname":"ip-172-31-9-163.eu-central-1.compute.internal"}

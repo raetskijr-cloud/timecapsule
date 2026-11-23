@@ -1,0 +1,9 @@
+21:28:13  v2: pushed 19a3ff3
+21:28:17  v2: deployed
+21:28:25  break: pushed 155a09b  (T0, начало простоя)
+21:28:28  break: deployed (сломанный код на сервере)
+21:28:30  break: probed
+21:29:01  revert: pushed 928a160
+21:29:05  revert: deployed
+21:29:05  revert: GET / -> HTTP 302
+21:29:06  revert: сайт восстановлен (T1, конец простоя)
