@@ -1,0 +1,1 @@
+$ cd site && scp -i ~/.ssh/danilaraetchi-keypair.pem index.html about.html contact.html ec2-user@18.153.101.232:~

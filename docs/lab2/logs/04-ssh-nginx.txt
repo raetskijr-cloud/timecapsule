@@ -1,0 +1,16 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem -o StrictHostKeyChecking=accept-new ec2-user@18.153.101.232 'echo "instance-id: $(cat /sys/devices/virtual/dmi/id/board_asset_tag)"; hostname; systemctl status nginx --no-pager | head -12'
+Warning: Permanently added '18.153.101.232' (ED25519) to the list of known hosts.
+instance-id: i-0b1ccc04e749e0f13
+ip-172-31-9-163.eu-central-1.compute.internal
+● nginx.service - The nginx HTTP and reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: disabled)
+     Active: active (running) since Mon 2026-11-23 18:29:40 UTC; 1min 53s ago
+    Process: 4013 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+    Process: 4068 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+    Process: 4119 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+   Main PID: 4164 (nginx)
+      Tasks: 3 (limit: 1059)
+     Memory: 3.5M
+        CPU: 75ms
+     CGroup: /system.slice/nginx.service
+             ├─4164 "nginx: master process /usr/sbin/nginx"

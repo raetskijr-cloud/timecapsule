@@ -1,0 +1,18 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@3.123.232.228 'sudo postgresql-setup --initdb; sudo grep -v "^#" /var/lib/pgsql/data/pg_hba.conf | grep -v "^$"; sudo sed -i "s/ident$/scram-sha-256/" /var/lib/pgsql/data/pg_hba.conf; echo --- after sed; sudo grep -v "^#" /var/lib/pgsql/data/pg_hba.conf | grep -v "^$"; sudo systemctl enable --now postgresql; systemctl is-active postgresql'
+ * Initializing database in '/var/lib/pgsql/data'
+ * Initialized, logs are in /var/lib/pgsql/initdb_postgresql.log
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            ident
+host    all             all             ::1/128                 ident
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            ident
+host    replication     all             ::1/128                 ident
+--- after sed
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            scram-sha-256
+host    all             all             ::1/128                 scram-sha-256
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            scram-sha-256
+host    replication     all             ::1/128                 scram-sha-256
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /usr/lib/systemd/system/postgresql.service.
+active

@@ -1,0 +1,20 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@3.123.232.228 'sudo dnf -y install git composer postgresql16-server php8.4-fpm php8.4-cli php8.4-pgsql php8.4-mbstring php8.4-xml 2>&1 | tail -n 15; echo ---; php -v | head -1; php -m | grep pdo_pgsql; nginx -v 2>&1'
+  php8.4-cli-8.4.28-1.amzn2023.0.1.x86_64                                       
+  php8.4-common-8.4.28-1.amzn2023.0.1.x86_64                                    
+  php8.4-fpm-8.4.28-1.amzn2023.0.1.x86_64                                       
+  php8.4-intl-8.4.28-1.amzn2023.0.1.x86_64                                      
+  php8.4-mbstring-8.4.28-1.amzn2023.0.1.x86_64                                  
+  php8.4-pdo-8.4.28-1.amzn2023.0.1.x86_64                                       
+  php8.4-pgsql-8.4.28-1.amzn2023.0.1.x86_64                                     
+  php8.4-process-8.4.28-1.amzn2023.0.1.x86_64                                   
+  php8.4-xml-8.4.28-1.amzn2023.0.1.x86_64                                       
+  php8.4-zip-8.4.28-1.amzn2023.0.1.x86_64                                       
+  postgresql16-16.16-1.amzn2023.0.1.x86_64                                      
+  postgresql16-private-libs-16.16-1.amzn2023.0.1.x86_64                         
+  postgresql16-server-16.16-1.amzn2023.0.1.x86_64                               
+
+Complete!
+---
+PHP 8.4.28 (cli) (built: Nov 17 2026 20:29:32) (NTS gcc x86_64)
+pdo_pgsql
+nginx version: nginx/1.30.7

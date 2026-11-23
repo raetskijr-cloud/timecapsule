@@ -1,0 +1,10 @@
+$ ssh -i ~/.ssh/danilaraetchi-keypair.pem ec2-user@18.153.101.232 'sudo cp ~/*.html /usr/share/nginx/html/ && ls -l /usr/share/nginx/html'
+total 24
+-rw-r--r--. 1 root root 3464 Nov 18 17:01 404.html
+-rw-r--r--. 1 root root 3507 Nov 18 17:01 50x.html
+-rw-r--r--. 1 root root 2640 Nov 23 18:32 about.html
+-rw-r--r--. 1 root root 2427 Nov 23 18:32 contact.html
+drwxr-xr-x. 2 root root   27 Nov 23 18:29 icons
+-rw-r--r--. 1 root root 2682 Nov 23 18:32 index.html
+-rw-r--r--. 1 root root  368 Nov 18 17:01 nginx-logo.png
+lrwxrwxrwx. 1 root root   14 Nov 18 17:03 poweredby.png -> nginx-logo.png
