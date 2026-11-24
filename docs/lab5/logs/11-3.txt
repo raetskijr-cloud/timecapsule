@@ -1,0 +1,12 @@
+$ tools/stopstart.sh   # stop-db-instance, /health, повторный stop, start, сравнение endpoint
+endpoint до:    timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com	available
+stopping
+18:18:18 статус: stopped
+--- /health при остановленной базе:
+HTTP 500
+--- повторный stop-db-instance:
+An error occurred (InvalidDBInstanceState) when calling the StopDBInstance operation: Instance timecapsule-dev-rds is not in available state.
+starting
+18:22:39 статус: available
+endpoint после: timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com	available
+{"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}  HTTP 200

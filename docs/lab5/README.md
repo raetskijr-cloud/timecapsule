@@ -2,7 +2,7 @@
 
 | Поле | Значение |
 | --- | --- |
-| Версия отчёта | 0.5 (черновик: рисунки консоли и результаты Части 1-2 не вставлены) |
+| Версия отчёта | 1.0 |
 | Дата | 2026-11-24 |
 | ФИО | Raetski Danila |
 | Группа | I2402 |
@@ -26,22 +26,21 @@
 - Приложение B. Термины
 - Приложение C. Остановка и запуск (runbook)
 
-Пометки `<<T..>>` в тексте: значения, которые подставляются после выполнения шага в консоли (время, endpoint, счётчики). Пометки `TODO-FIG`: места рисунков.
 
 ## 0. Сводка
 
 | Показатель | Значение |
 | --- | --- |
-| Учебная база | `lab5-db`: PostgreSQL <<T версия, 18.x>>, `db.t4g.micro`, gp3 20 ГиБ, `eu-central-1a`, шифрование и защита от удаления, копии <<T 1 день / 7 дней>> |
+| Учебная база | `lab5-db`: PostgreSQL 18.3-R2, `db.t4g.micro`, gp3 20 ГиБ, `eu-central-1a`, шифрование и защита от удаления, копии 1 день |
 | Учебные производные | реплика `lab5-db-replica` (1b), восстановленная копия `lab5-db-restore`; все удалены в конце Части 1 |
 | Сервер Части 1 | `lab5-web01` (t3.micro, AL2023, `public-a`, `lab5-sg-web`, клиент `psql` 16.16); удалён в конце Части 1 |
-| База приложения | `timecapsule-dev-rds`: PostgreSQL 16.13, `db.t4g.micro`, gp3 20 ГиБ, `eu-central-1a`, группа подсетей `timecapsule-dev-db-subnets`, `timecapsule-dev-rds-sg`; endpoint <<T endpoint>> |
+| База приложения | `timecapsule-dev-rds`: PostgreSQL 16.13, `db.t4g.micro`, gp3 20 ГиБ, `eu-central-1a`, группа подсетей `timecapsule-dev-db-subnets`, `timecapsule-dev-rds-sg`; endpoint `timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com` |
 | Ночная остановка | расписание `timecapsule-dev-rds-nightly-stop`, `cron(0 23 * * ? *)`, `Europe/Chisinau`; политика `timecapsule-dev-rds-stop`, роль `timecapsule-dev-scheduler-role` |
 | DNS | `db.timecapsule.internal`: запись A (10.14.10.165) заменена CNAME на endpoint одной пачкой, TTL 60 |
-| Ограничения Free plan | только шаблон `Free tier` (соответствует `Sandbox`), не более 2 экземпляров RDS, копии <<T срок>>: зафиксировано в разделе 2.2 |
+| Ограничения Free plan | только шаблон `Free tier` (соответствует `Sandbox`), не более 2 экземпляров RDS, копии не более 1 дня: зафиксировано в разделе 2.2 |
 | Теги | `Name`, `Project=timecapsule`, `Environment=dev`, `Owner=danilaraetchi`, `Lab=lab5`, `Purpose=coursework` |
 | Скрипты | [`scripts/lab5/`](../../scripts/lab5/): `app-user.sh`, `migrate.sh`, `notes.sql`, `dns-cname.json`, `health-poll.sh`, политики IAM |
-| Состояние на конец работы | <<T: база приложения остановлена; bastion, app остановлены; db-server удалён; ресурсов `lab5-*` нет>> |
+| Состояние на конец работы | база приложения `Stopped`; `bastion`, `app` остановлены; `db-server` удалён; ресурсов `lab5-*` нет. |
 
 Условное обозначение: рисунки вида `[Рис. N.k]` с тёмным терминалом сняты на ноутбуке (`psql` и `dig` выполнялись на `lab5web` или `app` через `ProxyJump`, номер аккаунта и пароли скрыты);
 рисунки консоли AWS сняты в реальной консоли под IAM-пользователем `danilaraetchi_student` (номер аккаунта скрыт). Пароль `dbadmin` создан RDS (`Auto generate password`), сохранён локально
@@ -68,20 +67,20 @@
 
 | Рисунок | Содержание | Тип | Статус |
 | --- | --- | --- | --- |
-| 1.1-1.3 | Группа подсетей, правила `lab5-sg-web` и `lab5-rds-sg` | консоль | TODO |
+| 1.1-1.3 | Группа подсетей, правила `lab5-sg-web` и `lab5-rds-sg` | консоль | готово |
 | 1.4, 1.5 | Группы подсетей и правила SG (CLI) | терминал | готово |
-| 2.1-2.7 | Форма создания `lab5-db`, ошибка Free plan, `Available` | консоль | TODO |
-| 3.1-3.4 | `version()`, `\conninfo`, `notes`, `dig`, отказ постороннему | терминал | TODO |
-| 4.1, 4.4 | Реплика `Available`, `ReplicaLag` | консоль | TODO |
-| 4.2, 4.3 | Реплика: `t`, ошибка `INSERT`, `fourth` | терминал | TODO |
-| 5.1, 5.2, 5.5 | Время, `DELETE`, пустая реплика, строки после восстановления | терминал | TODO |
-| 5.3, 5.4, 5.6 | `Latest restore time`, форма восстановления, список баз | консоль | TODO |
-| 6.1, 6.2 | База приложения | консоль | TODO |
+| 2.1-2.7 | Форма создания `lab5-db`, ошибка Free plan, `Available` | консоль | готово |
+| 3.1-3.4 | `version()`, `\conninfo`, `notes`, `dig`, отказ постороннему | терминал | готово |
+| 4.1, 4.4 | Реплика `Available`, `ReplicaLag` | консоль | готово |
+| 4.2, 4.3 | Реплика: `t`, ошибка `INSERT`, `fourth` | терминал | готово |
+| 5.1, 5.2, 5.5 | Время, `DELETE`, пустая реплика, строки после восстановления | терминал | готово |
+| 5.3, 5.4, 5.6 | `Latest restore time`, форма восстановления, список баз | консоль | готово |
+| 6.1, 6.2 | База приложения | консоль | готово |
 | 7.1 | Политика и роль (CLI) | терминал | готово |
-| 7.2-7.5 | Расписание, остановка, событие | консоль | TODO |
-| 8.1, 9.1, 10.1, 10.2 | Пользователь, перенос, CNAME, `/health`, капсула | терминал | TODO |
-| 10.3, 11.2, 11.4 | Список серверов, события базы, CloudTrail | консоль | TODO |
-| 11.1, 11.3 | `/health` при перезагрузке и остановке | терминал | TODO |
+| 7.2-7.5 | Расписание, остановка, событие | консоль | готово |
+| 8.1, 9.1, 10.1, 10.2 | Пользователь, перенос, CNAME, `/health`, капсула | терминал | готово |
+| 10.3, 11.2, 11.4 | Список серверов, события базы, CloudTrail | консоль | готово |
+| 11.1, 11.3 | `/health` при перезагрузке и остановке | терминал | готово |
 | 12.1 | Схема архитектуры | диаграмма | готово |
 
 ## 2. Часть 1. Базовый уровень (задания 1-5)
@@ -101,9 +100,14 @@
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 1.1: Группа подсетей lab5-db-subnets: VPC и две подсети с зонами -->
-<!-- TODO-FIG L5 1.2: lab5-sg-web: входящие правила -->
-<!-- TODO-FIG L5 1.3: lab5-rds-sg: единственное правило 5432 от lab5-sg-web -->
+![Рис. 1.1](figures/fig-L5-01-1.jpg)
+*Рис. 1.1. Группа подсетей lab5-db-subnets: VPC и две подсети с зонами*
+
+![Рис. 1.2](figures/fig-L5-01-2.jpg)
+*Рис. 1.2. lab5-sg-web: входящие правила*
+
+![Рис. 1.3](figures/fig-L5-01-3.jpg)
+*Рис. 1.3. lab5-rds-sg: единственное правило 5432 от lab5-sg-web*
 
 ![Рис. 1.4](figures/fig-L5-01-4.png)
 *Рис. 1.4. Группы подсетей БД по данным API*
@@ -121,21 +125,34 @@
 
 **Цель.** Создать `lab5-db` с заданными параметрами.
 
-**Выполненные действия.** Параметры: PostgreSQL <<T версия>> (последняя из доступных в регионе: 18.6 по данным `describe-db-engine-versions`), шаблон `Free tier` (на Free plan это единственный вариант, соответствует `Sandbox`),
+**Выполненные действия.** Параметры: PostgreSQL 18.3-R2 (самая новая версия в списке мастера консоли; 18.6 в списке не предлагалась), шаблон `Free tier` (на Free plan это единственный вариант, соответствует `Sandbox`),
 `db.t4g.micro`, gp3 20 ГиБ без autoscaling, пользователь `dbadmin` с автоматически созданным паролем, группа `lab5-db-subnets`, зона `eu-central-1a`, публичный доступ выключен, `lab5-rds-sg`, начальная база `lab5`,
-шифрование и защита от удаления включены. Срок хранения копий: 7 дней не принят <<T проверить: ошибка `exceeds the maximum available to free tier customers`>>, установлен 1 день.
+шифрование и защита от удаления включены. Срок хранения копий: 7 дней не принят (консоль вернула ошибку `The specified backup retention period exceeds the maximum available to free tier customers`, рис. 2.6), установлен 1 день.
 
-**Результат.** `lab5-db` в состоянии `Available`, endpoint <<T>>.
+**Результат.** `lab5-db` в состоянии `Available`, endpoint `lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com` (рис. 2.7).
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 2.1: Шаблон Free tier, Single-AZ, версия PostgreSQL -->
-<!-- TODO-FIG L5 2.2: Идентификатор, dbadmin, Auto generate password -->
-<!-- TODO-FIG L5 2.3: Класс db.t4g.micro, gp3 20 ГиБ, autoscaling выключен -->
-<!-- TODO-FIG L5 2.4: Подключение: группа подсетей, Public access No, lab5-rds-sg -->
-<!-- TODO-FIG L5 2.5: Дополнительно: база lab5, копии, шифрование, защита от удаления -->
-<!-- TODO-FIG L5 2.6: Ошибка Free plan при сроке копий 7 дней -->
-<!-- TODO-FIG L5 2.7: Connectivity & security: endpoint, Available -->
+![Рис. 2.1](figures/fig-L5-02-1.jpg)
+*Рис. 2.1. Шаблон Free tier, Single-AZ, версия PostgreSQL*
+
+![Рис. 2.2](figures/fig-L5-02-2.jpg)
+*Рис. 2.2. Идентификатор, dbadmin, Auto generate password*
+
+![Рис. 2.3](figures/fig-L5-02-3.jpg)
+*Рис. 2.3. Класс db.t4g.micro, gp3 20 ГиБ, autoscaling выключен*
+
+![Рис. 2.4](figures/fig-L5-02-4.jpg)
+*Рис. 2.4. Подключение: группа подсетей, Public access No, lab5-rds-sg*
+
+![Рис. 2.5](figures/fig-L5-02-5.jpg)
+*Рис. 2.5. Дополнительно: база lab5, копии, шифрование, защита от удаления*
+
+![Рис. 2.6](figures/fig-L5-02-6.jpg)
+*Рис. 2.6. Ошибка Free plan при сроке копий 7 дней*
+
+![Рис. 2.7](figures/fig-L5-02-7.jpg)
+*Рис. 2.7. Connectivity & security: endpoint, Available*
 
 **Вопрос.** Как убедиться, что база принимает подключения только с нужного сервера? Почему для неё выбрана зона `eu-central-1a`? От чего защищает и от чего не защищает `deletion protection`?
 
@@ -148,27 +165,41 @@
 **Выполненные действия.** `lab5-web01` (t3.micro, AL2023, `public-a`, `lab5-sg-web`, `psql` 16.16 из `postgresql16`, `bind-utils`; публичный адрес нужен только для установки пакетов, SSH разрешён лишь с bastion). Пароль
 `dbadmin` записан в `~/.pgpass` скриптом `tools/pgpass.sh` (через stdin, права 600). Выполнены `SELECT version();`, `\conninfo`, `scripts/lab5/notes.sql` (таблица `notes`, строки `first`, `second`, `third`). Имя endpoint разрешено на сервере и на ноутбуке.
 
-**Результат.** <<T: версия, `\conninfo` (SSL), три строки; на сервере endpoint даёт приватный адрес из `10.14.10.0/24`; результат с ноутбука: записать фактический>>.
+**Результат.** PostgreSQL 18.3, соединение по TLS 1.3 (`TLSv1.3`, `TLS_AES_256_GCM_SHA384`), три строки. Endpoint разрешается в приватный адрес `10.14.10.8` и на сервере, и на ноутбуке (публичной записи нет, поэтому с ноутбука подключиться нельзя). С `app` (другая SG) подключение завершается таймаутом..
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 3.1: psql: version() и \conninfo -->
-<!-- TODO-FIG L5 3.2: Таблица notes, три строки -->
-<!-- TODO-FIG L5 3.3: dig endpoint: lab5web и ноутбук -->
-<!-- TODO-FIG L5 3.4: Подключение с app (чужая SG): таймаут -->
+![Рис. 3.1](figures/fig-L5-03-1.png)
+*Рис. 3.1. psql: version() и \conninfo*
+
+![Рис. 3.2](figures/fig-L5-03-2.png)
+*Рис. 3.2. Таблица notes, три строки*
+
+![Рис. 3.3](figures/fig-L5-03-3.png)
+*Рис. 3.3. dig endpoint: lab5web и ноутбук*
+
+![Рис. 3.4](figures/fig-L5-03-4.png)
+*Рис. 3.4. Подключение с app (чужая SG): таймаут*
 
 ### 2.4 Задание 4. Реплика для чтения
 
 **Выполненные действия.** Реплика `lab5-db-replica`: `db.t4g.micro`, `eu-central-1b`, без публичного доступа, `lab5-rds-sg`, без защиты от удаления. На реплике: `pg_is_in_recovery()`, `SELECT * FROM notes`, `INSERT`. На основной: `pg_is_in_recovery()`, строка `fourth`; чтение на реплике; метрика `ReplicaLag`.
 
-**Результат.** <<T: `t` на реплике, `f` на основной, текст ошибки `INSERT` (`cannot execute INSERT in a read-only transaction`), `fourth` на реплике, значения ReplicaLag>>.
+**Результат.** `pg_is_in_recovery()` даёт `t` на реплике и `f` на основной; `INSERT` на реплике: `ERROR: cannot execute INSERT in a read-only transaction`; строка `fourth` появилась на реплике через 3 секунды. `ReplicaLag` держался около 3 секунд (первая точка -1: метрика ещё не инициализирована)..
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 4.1: Реплика Available в eu-central-1b -->
-<!-- TODO-FIG L5 4.2: Реплика: t, notes, ошибка INSERT -->
-<!-- TODO-FIG L5 4.3: Основная: f, fourth; реплика видит fourth -->
-<!-- TODO-FIG L5 4.4: ReplicaLag на вкладке Monitoring -->
+![Рис. 4.1](figures/fig-L5-04-1.jpg)
+*Рис. 4.1. Реплика Available в eu-central-1b*
+
+![Рис. 4.2](figures/fig-L5-04-2.png)
+*Рис. 4.2. Реплика: t, notes, ошибка INSERT*
+
+![Рис. 4.3](figures/fig-L5-04-3.png)
+*Рис. 4.3. Основная: f, fourth; реплика видит fourth*
+
+![Рис. 4.4](figures/fig-L5-04-4.jpg)
+*Рис. 4.4. ReplicaLag на вкладке Monitoring*
 
 **Вопрос.** Почему `INSERT` на реплике не выполнился? Чем реплика для чтения отличается от резервного экземпляра Multi-AZ?
 
@@ -178,19 +209,30 @@
 
 ### 2.5 Задание 5. Восстановление после ошибки
 
-**Выполненные действия.** Время `SELECT now() AT TIME ZONE 'UTC'` = <<T>>, через минуту `DELETE FROM notes;`. Реплика пуста (<<T>>). Реплика удалена. `Latest restore time` проверено после момента T. `Restore to point in time` на момент T
-(консоль показывает местное время UTC+2: <<T пересчёт>>) в `lab5-db-restore` (`db.t4g.micro`, одна зона, `lab5-db-subnets`, без публичного доступа, `lab5-rds-sg`, без защиты от удаления). Строки возвращены, копия удалена без финального снимка.
+**Выполненные действия.** Время `SELECT now() AT TIME ZONE 'UTC'` = 2026-11-24 14:49:29 UTC, через минуту `DELETE FROM notes;`. Реплика пуста: 0 строк через 5 секунд после `DELETE` (14:50:29 UTC, удалено 4 строки). Реплика удалена. `Latest restore time` проверено после момента T. `Restore to point in time` на момент T
+(консоль показывает местное время UTC+2: 16:49:29; `Latest restore time` 16:52:08, то есть позже T) в `lab5-db-restore` (`db.t4g.micro`, одна зона, `lab5-db-subnets`, без публичного доступа, `lab5-rds-sg`, без защиты от удаления). Строки возвращены, копия удалена без финального снимка.
 
-**Результат.** <<T: четыре строки (`first`, `second`, `third`, `fourth`) в копии>>.
+**Результат.** в копии четыре строки (`first`, `second`, `third`, `fourth`)..
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 5.1: Время T и DELETE на основной -->
-<!-- TODO-FIG L5 5.2: Реплика после DELETE: таблица пуста -->
-<!-- TODO-FIG L5 5.3: Latest restore time после момента T -->
-<!-- TODO-FIG L5 5.4: Форма Restore to point in time -->
-<!-- TODO-FIG L5 5.5: Копия lab5-db-restore: строки на месте -->
-<!-- TODO-FIG L5 5.6: Список баз: lab5-db удалена, ресурсов lab5-* нет -->
+![Рис. 5.1](figures/fig-L5-05-1.png)
+*Рис. 5.1. Время T и DELETE на основной*
+
+![Рис. 5.2](figures/fig-L5-05-2.png)
+*Рис. 5.2. Реплика после DELETE: таблица пуста*
+
+![Рис. 5.3](figures/fig-L5-05-3.jpg)
+*Рис. 5.3. Latest restore time после момента T*
+
+![Рис. 5.4](figures/fig-L5-05-4.jpg)
+*Рис. 5.4. Форма Restore to point in time*
+
+![Рис. 5.5](figures/fig-L5-05-5.png)
+*Рис. 5.5. Копия lab5-db-restore: строки на месте*
+
+![Рис. 5.6](figures/fig-L5-05-6.jpg)
+*Рис. 5.6. Список баз: lab5-db удалена, ресурсов lab5-* нет*
 
 **Вопрос.** Почему реплика не спасла данные? Почему восстановление создаёт новую базу, а не откатывает старую?
 
@@ -200,7 +242,7 @@
 
 ### Завершение Части 1
 
-Защита от удаления у `lab5-db` выключена (база запущена), `lab5-db` удалена без снимка и без копий, удалены `lab5-db-subnets`, `lab5-rds-sg`, затем `lab5-web01` и `lab5-sg-web`. Проверка: <<T: `aws rds describe-db-instances` пусто, EC2 без `lab5-*`>>.
+Защита от удаления у `lab5-db` выключена (база запущена), `lab5-db` удалена без снимка и без копий, удалены `lab5-db-subnets`, `lab5-rds-sg`, затем `lab5-web01` и `lab5-sg-web`. Проверка: `aws rds describe-db-instances` возвращает пустой список (рис. 5.6), `lab5-web01` в состоянии `terminated`, групп `lab5-*` нет..
 
 ## 3. Часть 2. Продвинутый уровень (задания 6-11)
 
@@ -211,8 +253,11 @@
 
 **Доказательство.**
 
-<!-- TODO-FIG L5 6.1: timecapsule-dev-rds: Connectivity & security -->
-<!-- TODO-FIG L5 6.2: Maintenance & backups: окна по умолчанию, копии -->
+![Рис. 6.1](figures/fig-L5-06-1.jpg)
+*Рис. 6.1. timecapsule-dev-rds: Connectivity & security*
+
+![Рис. 6.2](figures/fig-L5-06-2.jpg)
+*Рис. 6.2. Maintenance & backups: окна по умолчанию, копии*
 
 **Вопрос.** Какие параметры базы приложения вы выбрали бы иначе для рабочей системы с реальными пользователями? Почему?
 
@@ -223,18 +268,25 @@
 
 **Выполненные действия.** Политика `timecapsule-dev-rds-stop`: единственное действие `rds:StopDBInstance`, ресурс `arn:aws:rds:eu-central-1:<ACCOUNT_ID>:db:timecapsule-dev-rds` (файл [`rds-stop-policy.json`](../../scripts/lab5/rds-stop-policy.json)).
 Роль `timecapsule-dev-scheduler-role`: доверие `scheduler.amazonaws.com` с условием `aws:SourceAccount` ([`scheduler-trust.json`](../../scripts/lab5/scheduler-trust.json)). Расписание `timecapsule-dev-rds-nightly-stop`: `Cron-based`,
-`Europe/Chisinau`, Flexible time window `Off`, цель `All APIs` -> `Amazon RDS` -> `StopDBInstance`, вход `{"DbInstanceIdentifier": "timecapsule-dev-rds"}`. Проверка: выражение на время через 6 минут (<<T cron>>),
-база перешла в `Stopped` в <<T>>, событие `DB instance stopped` <<T>>. После этого выражение заменено на `0 23 * * ? *`, база запущена.
+`Europe/Chisinau`, Flexible time window `Off`, цель `All APIs` -> `Amazon RDS` -> `StopDBInstance`, вход `{"DbInstanceIdentifier": "timecapsule-dev-rds"}`. Проверка: выражение на время через 6 минут (`cron(30 17 * * ? *)`),
+база перешла в `Stopped` в 17:34 (UTC+2), событие `DB instance stopped` в 17:34 (UTC+2; расписание сработало в 17:30:00). После этого выражение заменено на `0 23 * * ? *`, база запущена.
 
 **Доказательство.**
 
 ![Рис. 7.1](figures/fig-L5-07-1.png)
 *Рис. 7.1. Политика и роль расписания*
 
-<!-- TODO-FIG L5 7.2: Расписание: cron, часовой пояс, Flexible window Off -->
-<!-- TODO-FIG L5 7.3: Расписание: цель StopDBInstance, роль -->
-<!-- TODO-FIG L5 7.4: База Stopped и событие остановки в Logs & events -->
-<!-- TODO-FIG L5 7.5: Расписание после замены на 0 23 * * ? * -->
+![Рис. 7.2](figures/fig-L5-07-2.jpg)
+*Рис. 7.2. Расписание: cron, часовой пояс, Flexible window Off*
+
+![Рис. 7.3](figures/fig-L5-07-3.jpg)
+*Рис. 7.3. Расписание: цель StopDBInstance, роль*
+![Рис. 7.4](figures/fig-L5-07-4.jpg)
+*Рис. 7.4. База Stopped и событие остановки в Logs & events*
+
+![Рис. 7.5](figures/fig-L5-07-5.jpg)
+*Рис. 7.5. Расписание после замены на 0 23 * * ? **
+
 
 **Вопрос.** Зачем расписанию своя роль, если вы и сами можете остановить базу? Почему роль может остановить только одну базу?
 
@@ -246,7 +298,9 @@
 **Выполненные действия.** Скрипт [`app-user.sh`](../../scripts/lab5/app-user.sh) на `app` от `dbadmin`: `CREATE USER timecapsule`, пароль из `DB_PASSWORD` в `.env` (подстановка внутри `psql`, в аргументах и выводе значения нет;
 интерактивный `\password` по `ssh` без терминала не работает), `GRANT timecapsule TO dbadmin`, `CREATE DATABASE timecapsule OWNER timecapsule`. `.env` не менялся.
 
-<!-- TODO-FIG L5 8.1: Пользователь и база timecapsule в RDS -->
+![Рис. 8.1](figures/fig-L5-08-1.png)
+*Рис. 8.1. Пользователь и база timecapsule в RDS*
+
 
 **Вопрос.** Почему приложению нужен отдельный пользователь, а не `dbadmin`?
 
@@ -258,18 +312,26 @@
 **Выполненные действия.** Приложение не открывалось с момента выгрузки до переключения DNS. Скрипт [`migrate.sh`](../../scripts/lab5/migrate.sh) на `app`: `pg_dump -h db.timecapsule.internal ... --no-owner --no-privileges`,
 загрузка `psql --single-transaction` в endpoint RDS, `count(*)` по `users` и `capsules` в обеих базах, удаление выгрузки (в ней хеши паролей).
 
-**Результат.** <<T: users = N, capsules = M в обеих базах; `timecapsule.sql` удалён>>.
+**Результат.** `users = 2`, `capsules = 3` в обеих базах, `timecapsule.sql` удалён..
 
-<!-- TODO-FIG L5 9.1: Выгрузка, загрузка, совпадающие счётчики users и capsules, удаление дампа -->
+![Рис. 9.1](figures/fig-L5-09-1.png)
+*Рис. 9.1. Выгрузка, загрузка, совпадающие счётчики users и capsules, удаление дампа*
+
 
 ### 3.5 Задание 10. Переключение приложения
 
 **Выполненные действия.** Запись A `db` (10.14.10.165) удалена и CNAME `db` -> endpoint создана одним запросом `change-resource-record-sets` (пачка `DELETE` + `CREATE`, TTL 60; файл [`dns-cname.json`](../../scripts/lab5/dns-cname.json)),
-окна без записи нет. Соединение шифруется: `pdo_pgsql` использует `sslmode=prefer`, у RDS for PostgreSQL 16 включён TLS (<<T `pg_stat_ssl`>>). `/health`, новая капсула найдена в `capsules` RDS. `db-server` остановлен, приложение работает, сервер удалён.
+окна без записи нет. Соединение шифруется: `pdo_pgsql` использует `sslmode=prefer`, у RDS for PostgreSQL 16 включён TLS (`pg_stat_ssl`: `ssl = t`, TLSv1.3, `TLS_AES_256_GCM_SHA384`). `/health`, новая капсула найдена в `capsules` RDS. `db-server` остановлен, приложение работает, сервер удалён.
 
-<!-- TODO-FIG L5 10.1: DELETE A + CREATE CNAME и dig db.timecapsule.internal -->
-<!-- TODO-FIG L5 10.2: /health и новая капсула в таблице capsules RDS -->
-<!-- TODO-FIG L5 10.3: Список серверов EC2 без db-server -->
+![Рис. 10.1](figures/fig-L5-10-1.png)
+*Рис. 10.1. DELETE A + CREATE CNAME и dig db.timecapsule.internal*
+
+![Рис. 10.2](figures/fig-L5-10-2.png)
+*Рис. 10.2. /health и новая капсула в таблице capsules RDS*
+
+![Рис. 10.3](figures/fig-L5-10-3.jpg)
+*Рис. 10.3. Список серверов EC2 без db-server*
+
 
 **Вопрос.** Почему не пришлось менять `DB_HOST`? Какие обязанности из LR3 перешли к AWS, а какие остались за вами?
 
@@ -282,16 +344,24 @@
 **Выполненные действия.** Перезагрузка базы (`Reboot` без failover) при опросе `/health` каждую секунду ([`health-poll.sh`](../../scripts/lab5/health-poll.sh)); события на `Logs & events`; остановка и запуск базы;
 сравнение endpoint; повторный `StopDBInstance` на остановленной базе; событие `StopDBInstance` от `assumed-role/timecapsule-dev-scheduler-role` в CloudTrail.
 
-**Результат.** <<T: `/health` во время перезагрузки (код, длительность), endpoint до и после (совпал / нет), текст ошибки повторного Stop (`InvalidDBInstanceState`)>>.
+**Результат.** при Reboot `/health` отвечал 500 около 10 секунд (18:09:33-18:09:42 UTC, события `DB instance shutdown` 18:09:33 и `DB instance restarted` 18:09:47), затем 200. После остановки и запуска endpoint остался прежним; при остановленной базе `/health` вернул 500. Повторный `stop-db-instance` дал `InvalidDBInstanceState: Instance timecapsule-dev-rds is not in available state`..
 
-<!-- TODO-FIG L5 11.1: /health раз в секунду во время Reboot -->
-<!-- TODO-FIG L5 11.2: Logs & events: перезагрузка, остановка, запуск -->
-<!-- TODO-FIG L5 11.3: Приложение при остановленной базе; endpoint; повторный Stop -->
-<!-- TODO-FIG L5 11.4: CloudTrail: StopDBInstance от scheduler-role -->
+![Рис. 11.1](figures/fig-L5-11-1.png)
+*Рис. 11.1. /health раз в секунду во время Reboot*
+
+![Рис. 11.2](figures/fig-L5-11-2.jpg)
+*Рис. 11.2. Logs & events: перезагрузка, остановка, запуск*
+
+![Рис. 11.3](figures/fig-L5-11-3.png)
+*Рис. 11.3. Приложение при остановленной базе; endpoint; повторный Stop*
+
+![Рис. 11.4](figures/fig-L5-11-4.jpg)
+*Рис. 11.4. CloudTrail: StopDBInstance от scheduler-role*
+
 
 **Вопрос.** Что показывал `/health` во время перезагрузки? Изменился ли endpoint после остановки и запуска? Какую ошибку получает расписание, если база уже остановлена?
 
-**Ответ.** <<T: подставить фактическое наблюдение: код ответа и длительность недоступности>>. Endpoint не меняется (DNS-имя закреплено за экземпляром, меняться может только IP за ним). Вызов `StopDBInstance` на остановленной базе завершается
+**Ответ.** Код 500 (`Cannot connect to the database`) около 10 секунд, потом снова 200. Endpoint не меняется (DNS-имя закреплено за экземпляром, меняться может только IP за ним). Вызов `StopDBInstance` на остановленной базе завершается
 ошибкой `InvalidDBInstanceState` (база не в состоянии `available`), расписание фиксирует неудачный вызов, на состояние базы это не влияет.
 
 ## 4. Архитектура и ADR (задание 12)
@@ -313,7 +383,7 @@
 
 ## 5. Итог: состояние на конец работы
 
-<<T: заполнить: база приложения `stopped`; `bastion`, `app` остановлены; `db-server` удалён; Elastic IP `app-eip` остаётся; ресурсов `lab5-*` нет; расписание активно>>
+база приложения `stopped`; `bastion`, `app` остановлены; `db-server` удалён; Elastic IP `app-eip` остаётся; ресурсов `lab5-*` нет; расписание `0 23 * * ? *` активно.
 
 ## 6. Ответы на контрольные вопросы
 

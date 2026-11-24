@@ -1,0 +1,22 @@
+$ ssh lab5web "psql -h lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c \"SELECT now() AT TIME ZONE 'UTC' AS t_utc;\" -c 'SELECT count(*) FROM notes;'; sleep 60; psql -h lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c \"SELECT now() AT TIME ZONE 'UTC' AS t_delete;\" -c 'DELETE FROM notes;' -c 'SELECT count(*) FROM notes;'"
+           t_utc            
+----------------------------
+ 2026-11-24 14:49:29.619418
+(1 row)
+
+ count 
+-------
+     4
+(1 row)
+
+          t_delete          
+----------------------------
+ 2026-11-24 14:50:29.652032
+(1 row)
+
+DELETE 4
+ count 
+-------
+     0
+(1 row)
+

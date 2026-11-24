@@ -1,0 +1,9 @@
+$ ssh lab5web "psql -h lab5-db-restore.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT id, body FROM notes ORDER BY id;'"
+ id |  body  
+----+--------
+  1 | first
+  2 | second
+  3 | third
+  4 | fourth
+(4 rows)
+

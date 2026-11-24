@@ -1,0 +1,16 @@
+$ ssh lab5web "psql -h lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT pg_is_in_recovery();' -c \"INSERT INTO notes (body) VALUES ('fourth');\"; echo '--- реплика:'; sleep 3; psql -h lab5-db-replica.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT id, body FROM notes ORDER BY id;'"
+ pg_is_in_recovery 
+-------------------
+ f
+(1 row)
+
+INSERT 0 1
+--- реплика:
+ id |  body  
+----+--------
+  1 | first
+  2 | second
+  3 | third
+  4 | fourth
+(4 rows)
+

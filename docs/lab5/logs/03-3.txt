@@ -1,0 +1,5 @@
+$ ssh lab5web 'dig +short lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com'; echo '--- ноутбук:'; dig +short lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com; echo "(код $?)"
+10.14.10.8
+--- ноутбук:
+10.14.10.8
+(код 0)

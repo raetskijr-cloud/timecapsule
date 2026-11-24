@@ -1,0 +1,5 @@
+$ aws route53 list-resource-record-sets --hosted-zone-id $ZONE --query "ResourceRecordSets[?Name=='db.timecapsule.internal.'].[Type,TTL,ResourceRecords[0].Value]" --output text; echo '--- с app:'; ssh app 'dig +short db.timecapsule.internal'
+CNAME	60	timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com
+--- с app:
+timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com.
+10.14.10.136

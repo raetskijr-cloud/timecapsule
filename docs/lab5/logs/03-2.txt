@@ -1,0 +1,10 @@
+$ ssh lab5web "psql -h lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -f notes.sql"
+CREATE TABLE
+INSERT 0 3
+ id |  body  |          created_at           
+----+--------+-------------------------------
+  1 | first  | 2026-11-24 14:36:09.288091+00
+  2 | second | 2026-11-24 14:36:09.288091+00
+  3 | third  | 2026-11-24 14:36:09.288091+00
+(3 rows)
+

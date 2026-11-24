@@ -1,0 +1,24 @@
+$ tools/health-poll.sh http://<app-eip>/health 150 1   # (время UTC, код, ответ); Reboot базы в консоли в 18:09:30
+18:09:26 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:27 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:28 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:30 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:31 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:32 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:33 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:34 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:35 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:36 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:38 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:39 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:40 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:41 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:42 500 {"status":"error","db":"error","hint":"Cannot connect to the database. Check DB_HOST, DB_PORT, DB_NAME, D
+18:09:43 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:44 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:46 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:47 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:48 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:49 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:50 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+18:09:51 200 {"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}

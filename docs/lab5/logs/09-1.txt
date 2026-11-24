@@ -1,0 +1,33 @@
+$ ssh app ./migrate.sh timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com
+[1/5] выгрузка с db.timecapsule.internal
+-rw-rw-r--. 1 ec2-user ec2-user 8010 Nov 24 15:38 timecapsule.sql
+[2/5] загрузка в timecapsule-dev-rds.cngaakaqwkvy.eu-central-1.rds.amazonaws.com
+ set_config 
+------------
+ 
+(1 row)
+
+ setval 
+--------
+      4
+(1 row)
+
+ setval 
+--------
+      8
+(1 row)
+
+ setval 
+--------
+      2
+(1 row)
+
+[3/5] счётчики, старая база
+users=2
+capsules=3
+[4/5] счётчики, RDS
+users=2
+capsules=3
+совпадают
+[5/5] удаление выгрузки (в ней хеши паролей)
+ls: cannot access 'timecapsule.sql': No such file or directory

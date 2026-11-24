@@ -1,0 +1,15 @@
+$ ssh lab5web "sleep 5; psql -h lab5-db-replica.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT pg_is_in_recovery();' -c 'SELECT count(*) FROM notes;' -c 'SELECT * FROM notes;'"
+ pg_is_in_recovery 
+-------------------
+ t
+(1 row)
+
+ count 
+-------
+     0
+(1 row)
+
+ id | body | created_at 
+----+------+------------
+(0 rows)
+

@@ -1,0 +1,43 @@
+2026-11-24T14:32:09Z DB instance restarted
+2026-11-24T14:32:56Z DB instance created
+2026-11-24T14:34:08Z Monitoring Interval changed to 0
+2026-11-24T14:34:08Z Performance Insights has been enabled
+2026-11-24T14:34:12Z Backing up DB instance
+2026-11-24T14:36:44Z Finished DB Instance backup
+2026-11-24T14:40:08Z Backing up DB instance
+2026-11-24T14:42:40Z Finished DB Instance backup
+2026-11-24T14:45:03Z DB instance restarted
+2026-11-24T14:45:52Z Restored from snapshot 
+2026-11-24T14:46:58Z Monitoring Interval changed to 0
+2026-11-24T14:46:58Z Performance Insights has been enabled
+2026-11-24T14:51:24Z DB instance shutdown
+2026-11-24T14:52:55Z DB instance deleted
+2026-11-24T15:01:34Z Restored from DB instance lab5-db to 2026-11-24 14:49:29.0
+2026-11-24T15:02:08Z DB instance restarted
+2026-11-24T15:03:32Z Backing up DB instance
+2026-11-24T15:06:05Z Finished DB Instance backup
+2026-11-24T15:06:49Z DB instance shutdown
+2026-11-24T15:08:11Z DB instance deleted
+2026-11-24T15:08:33Z DB instance deleted
+2026-11-24T15:14:28Z DB instance restarted
+2026-11-24T15:15:10Z DB instance created
+2026-11-24T15:16:17Z Monitoring Interval changed to 0
+2026-11-24T15:16:17Z Performance Insights has been enabled
+2026-11-24T15:16:28Z Backing up DB instance
+2026-11-24T15:19:00Z Finished DB Instance backup
+2026-11-24T15:34:30Z DB instance stopped
+2026-11-24T15:35:05Z Recovery of the DB instance has started. Recovery time will vary with the amount of data to be recovered.
+2026-11-24T15:36:51Z DB instance restarted
+2026-11-24T15:36:57Z Recovery of the DB instance is complete.
+2026-11-24T15:37:01Z DB instance started
+2026-11-24T15:38:06Z Performance Insights has been enabled
+2026-11-24T15:38:06Z Monitoring Interval changed to 0
+2026-11-24T18:09:33Z DB instance shutdown
+2026-11-24T18:09:47Z DB instance restarted
+2026-11-24T18:18:15Z DB instance stopped
+2026-11-24T18:18:39Z Recovery of the DB instance has started. Recovery time will vary with the amount of data to be recovered.
+2026-11-24T18:20:25Z DB instance restarted
+2026-11-24T18:20:30Z Recovery of the DB instance is complete.
+2026-11-24T18:21:28Z DB instance started
+2026-11-24T18:22:33Z Monitoring Interval changed to 0
+2026-11-24T18:22:33Z Performance Insights has been enabled

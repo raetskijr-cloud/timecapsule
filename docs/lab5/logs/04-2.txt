@@ -1,0 +1,14 @@
+$ ssh lab5web "psql -h lab5-db-replica.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT pg_is_in_recovery();' -c 'SELECT * FROM notes;' -c \"INSERT INTO notes (body) VALUES ('x');\""
+ pg_is_in_recovery 
+-------------------
+ t
+(1 row)
+
+ id |  body  |          created_at           
+----+--------+-------------------------------
+  1 | first  | 2026-11-24 14:36:09.288091+00
+  2 | second | 2026-11-24 14:36:09.288091+00
+  3 | third  | 2026-11-24 14:36:09.288091+00
+(3 rows)
+
+ERROR:  cannot execute INSERT in a read-only transaction

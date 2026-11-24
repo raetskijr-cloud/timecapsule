@@ -1,0 +1,8 @@
+$ ssh lab5web "psql -h lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com -U dbadmin -d lab5 -c 'SELECT version();' -c '\conninfo'"
+                                                   version                                                    
+--------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.3 on aarch64-unknown-linux-gnu, compiled by aarch64-unknown-linux-gnu-gcc (GCC) 12.4.0, 64-bit
+(1 row)
+
+You are connected to database "lab5" as user "dbadmin" on host "lab5-db.cngaakaqwkvy.eu-central-1.rds.amazonaws.com" (address "10.14.10.8") at port "5432".
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
