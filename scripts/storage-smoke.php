@@ -13,10 +13,18 @@ function head(string $url): array
     return $http_response_header ?? [];
 }
 
-$tmp = tempnam(sys_get_temp_dir(), 'tc');
-file_put_contents($tmp, "%PDF-1.4\nsmoke test\n");
-$stored = storage_save(['tmp_name' => $tmp], 'pdf');
-unlink($tmp);
+// Without arguments: a tiny generated PDF that is deleted at the end.
+// With a path:  php scripts/storage-smoke.php /tmp/picture.png  -> the file is uploaded and KEPT.
+$keep = isset($argv[1]);
+$ext = $keep ? pathinfo($argv[1], PATHINFO_EXTENSION) : 'pdf';
+$tmp = $keep ? $argv[1] : tempnam(sys_get_temp_dir(), 'tc');
+if (!$keep) {
+    file_put_contents($tmp, "%PDF-1.4\nsmoke test\n");
+}
+$stored = storage_save(['tmp_name' => $tmp], $ext);
+if (!$keep) {
+    unlink($tmp);
+}
 out('saved      : ' . storage_key($stored));
 
 $url = storage_url($stored, 'application/pdf', 'Отчёт smoke.pdf', 'attachment');
@@ -29,5 +37,9 @@ foreach (head($url) as $h) {
     }
 }
 
+if ($keep) {
+    out('kept       : ' . storage_key($stored));
+    exit(0);
+}
 storage_delete($stored);
 out('deleted    : ' . storage_key($stored) . ' (delete marker)');
