@@ -27,7 +27,12 @@ if (!$keep) {
 }
 out('saved      : ' . storage_key($stored));
 
-$url = storage_url($stored, 'application/pdf', 'Отчёт smoke.pdf', 'attachment');
+$url = storage_url(
+    $stored,
+    $keep ? mime_content_type($tmp) : 'application/pdf',
+    $keep ? basename($tmp) : 'Отчёт smoke.pdf',
+    $keep ? 'inline' : 'attachment'
+);
 out('url host   : ' . parse_url($url, PHP_URL_HOST));
 out('url path   : ' . parse_url($url, PHP_URL_PATH));
 out('url params : ' . implode(', ', array_map(fn($p) => explode('=', $p)[0], explode('&', (string) parse_url($url, PHP_URL_QUERY)))));
