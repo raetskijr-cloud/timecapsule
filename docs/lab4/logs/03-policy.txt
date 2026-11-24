@@ -1,0 +1,22 @@
+$ aws s3api put-bucket-policy --bucket $BUCKET --policy file://files/bucket-policy.json && echo "policy saved"; aws s3api get-bucket-policy --bucket $BUCKET --query Policy --output text | python3 -m json.tool
+policy saved
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyInsecureTransport",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi",
+                "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi/*"
+            ],
+            "Condition": {
+                "Bool": {
+                    "aws:SecureTransport": "false"
+                }
+            }
+        }
+    ]
+}

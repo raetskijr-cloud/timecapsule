@@ -1,0 +1,18 @@
+$ [app] echo "export BUCKET=timecapsule-dev-uploads-danilaraetchi" >> ~/.bashrc && source ~/.bashrc; echo BUCKET=$BUCKET
+BUCKET=timecapsule-dev-uploads-danilaraetchi
+$ [app] source ~/.bashrc; aws sts get-caller-identity
+{
+    "UserId": "AROASA5ZQDPIDC7TQRXQI:i-030783e43288ed6cb",
+    "Account": "************",
+    "Arn": "arn:aws:sts::************:assumed-role/timecapsule-dev-app-role/i-030783e43288ed6cb"
+}
+$ [app] source ~/.bashrc; aws s3 ls s3://$BUCKET/uploads/
+                           PRE 2026/
+2026-11-24 01:05:03          0 
+2026-11-24 01:05:27      31375 lab4-cover.png
+2026-11-24 01:05:29      21985 lab4-spec.pdf
+2026-11-24 01:06:48          3 notes.txt
+2026-11-24 01:05:38         18 photo.txt
+$ [app] source ~/.bashrc; aws s3 ls s3://$BUCKET/backups/
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-app-role/i-030783e43288ed6cb is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" because no identity-based policy allows the s3:ListBucket action

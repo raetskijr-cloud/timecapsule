@@ -1,0 +1,11 @@
+# Заполнено ДО запуска команд (UTC 2026-11-24T01:08:12Z). Проверка: tools/tester-check.sh
+1  cp test.txt uploads/test.txt            | разрешено        | PutObject под uploads/* есть в UploadsObjectRW
+2  ls uploads/                              | разрешено        | ListBucket с s3:prefix=uploads/ подходит под uploads/*
+3  ls (корень бакета)                       | AccessDenied     | пустой prefix не подходит под условие: неявный запрет
+4  cp uploads/photo.txt -                   | разрешено        | GetObject под uploads/*
+5  ls backups/                              | AccessDenied     | prefix=backups/ вне условия: неявный запрет
+6  cp test.txt backups/test.txt             | AccessDenied     | PutObject только под uploads/*: неявный запрет
+7  list-object-versions --prefix uploads/   | AccessDenied     | нужен s3:ListBucketVersions, в политике его нет: неявный запрет
+8  delete-object --version-id               | AccessDenied     | нужен s3:DeleteObjectVersion, его нет: неявный запрет
+9  rm uploads/test.txt                      | разрешено        | DeleteObject есть; при включённом версионировании создаст маркер удаления
+10 ls uploads/ через http://                | AccessDenied     | явный запрет в политике бакета (aws:SecureTransport=false)

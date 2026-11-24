@@ -1,0 +1,30 @@
+$ aws s3api put-bucket-lifecycle-configuration --bucket $BUCKET --lifecycle-configuration file://files/lifecycle.json && echo "rule saved"; aws s3api get-bucket-lifecycle-configuration --bucket $BUCKET
+{
+    "TransitionDefaultMinimumObjectSize": "all_storage_classes_128K"
+}
+rule saved
+{
+    "TransitionDefaultMinimumObjectSize": "all_storage_classes_128K",
+    "Rules": [
+        {
+            "ID": "timecapsule-dev-noncurrent",
+            "Filter": {
+                "Prefix": "uploads/"
+            },
+            "Status": "Enabled",
+            "NoncurrentVersionTransitions": [
+                {
+                    "NoncurrentDays": 30,
+                    "StorageClass": "STANDARD_IA"
+                }
+            ],
+            "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 90,
+                "NewerNoncurrentVersions": 2
+            },
+            "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7
+            }
+        }
+    ]
+}

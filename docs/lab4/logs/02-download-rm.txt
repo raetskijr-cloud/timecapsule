@@ -1,0 +1,4 @@
+$ cd work/lab4; aws s3 cp s3://$BUCKET/uploads/photo.txt downloaded.txt && cat downloaded.txt; aws s3 rm s3://$BUCKET/uploads/2026/10/report-2.txt
+download: s3://timecapsule-dev-uploads-danilaraetchi/uploads/photo.txt to ./downloaded.txt
+photo placeholder
+delete: s3://timecapsule-dev-uploads-danilaraetchi/uploads/2026/10/report-2.txt

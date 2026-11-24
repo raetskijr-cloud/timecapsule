@@ -1,0 +1,12 @@
+$ aws iam list-policy-versions --policy-arn arn:aws:iam::************:policy/timecapsule-dev-app-s3 --query 'Versions[].[VersionId,IsDefaultVersion,CreateDate]' --output text
+v2	True	2026-11-24T01:15:52+00:00
+v1	False	2026-11-24T01:07:28+00:00
+$ [app] source ~/.bashrc; cd /var/www/timecapsule && php scripts/storage-smoke.php | grep -E "saved|S3 says|deleted"
+saved      : uploads/75c04a76c12490c9113038e229fc80b8.pdf
+S3 says    : HTTP/1.1 206 Partial Content
+S3 says    : Content-Type: application/pdf
+S3 says    : Content-Disposition: attachment; filename="__________ smoke.pdf"; filename*=UTF-8''%D0%9E%D1%82%D1%87%D1%91%D1%82%20smoke.pdf
+deleted    : uploads/75c04a76c12490c9113038e229fc80b8.pdf (delete marker)
+$ [app] source ~/.bashrc; aws s3 ls s3://$BUCKET/uploads/
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-app-role/i-030783e43288ed6cb is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" because no identity-based policy allows the s3:ListBucket action

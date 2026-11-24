@@ -1,0 +1,19 @@
+$ [app] cd /var/www/timecapsule && grep -c ^S3_BUCKET .env; ls -l .env; grep -E "^(S3_BUCKET|AWS_REGION|AWS_ACCESS)" .env | sed "s/^AWS_ACCESS.*/(ключей доступа в .env нет)/" | head -3
+1
+-rw-r-----. 1 ec2-user apache 327 Nov 24 01:14 .env
+S3_BUCKET=timecapsule-dev-uploads-danilaraetchi
+AWS_REGION=eu-central-1
+$ [app] ~/deploy.sh 2>&1 | grep -E "^(\[|Готово|Database|Package|Installing)"
+[1/5] Забираем новый код из GitHub
+[2/5] Устанавливаем библиотеки
+Installing dependencies from lock file
+[3/5] Создаём недостающие таблицы
+Database is ready (db.timecapsule.internal).
+[4/5] Перезапускаем PHP-FPM
+[5/5] Фиксируем результат
+Готово. На сервере коммит: b09d1a1 [LR4] Store attachments in Amazon S3 (storage module, SDK, footer)
+$ [app] tail -2 ~/deploy.log; curl -s http://localhost/login | grep -o "Files: <code>[^<]*"; curl -s http://localhost/health
+2026-11-24T01:14:21Z mode=release result=ok commit=b09d1a1
+2026-11-24T01:14:34Z mode=release result=ok commit=b09d1a1
+Files: <code>s3://timecapsule-dev-uploads-danilaraetchi/uploads/
+{"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}

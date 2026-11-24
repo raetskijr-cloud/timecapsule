@@ -1,0 +1,6 @@
+$ aws s3 cp files/notes-v1.txt s3://$BUCKET/uploads/notes.txt --no-progress; sleep 2; aws s3 cp files/notes-v2.txt s3://$BUCKET/uploads/notes.txt --no-progress; aws s3api list-object-versions --bucket $BUCKET --prefix uploads/notes.txt --query "Versions[].[Key,VersionId,IsLatest,LastModified]" --output text; aws s3 cp s3://$BUCKET/uploads/notes.txt - --no-progress
+upload: files/notes-v1.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/notes.txt
+upload: files/notes-v2.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/notes.txt
+uploads/notes.txt	.SuVRJskcz56aAB2CRzvfgngflgwsL7F	True	2026-11-24T01:06:48+00:00
+uploads/notes.txt	.NFJnKZZdkVOBLV7.dMsuArVRaIgyvi2	False	2026-11-24T01:06:45+00:00
+v2

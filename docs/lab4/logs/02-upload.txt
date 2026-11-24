@@ -1,0 +1,4 @@
+$ cd work/lab4; aws s3 cp photo.txt s3://$BUCKET/uploads/photo.txt; aws s3 sync 2026 s3://$BUCKET/uploads/2026
+upload: ./photo.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/photo.txt
+upload: 2026/10/report-2.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/2026/10/report-2.txt
+upload: 2026/10/report.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/2026/10/report.txt

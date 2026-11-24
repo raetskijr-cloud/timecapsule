@@ -1,0 +1,9 @@
+$ [app] cd /var/www/timecapsule && php scripts/storage-smoke.php
+saved      : uploads/a8e984b53340709d2be3362c75147fca.pdf
+url host   : timecapsule-dev-uploads-danilaraetchi.s3.eu-central-1.amazonaws.com
+url path   : /uploads/a8e984b53340709d2be3362c75147fca.pdf
+url params : response-content-type, response-content-disposition, X-Amz-Content-Sha256, X-Amz-Security-Token, X-Amz-Algorithm, X-Amz-Credential, X-Amz-Date, X-Amz-SignedHeaders, X-Amz-Expires, X-Amz-Signature
+S3 says    : HTTP/1.1 206 Partial Content
+S3 says    : Content-Type: application/pdf
+S3 says    : Content-Disposition: attachment; filename="__________ smoke.pdf"; filename*=UTF-8''%D0%9E%D1%82%D1%87%D1%91%D1%82%20smoke.pdf
+deleted    : uploads/a8e984b53340709d2be3362c75147fca.pdf (delete marker)

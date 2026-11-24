@@ -1,0 +1,19 @@
+$ aws s3 cp files/lab4-cover.png s3://$BUCKET/uploads/lab4-cover.png --no-progress; aws s3 cp files/lab4-spec.pdf s3://$BUCKET/uploads/lab4-spec.pdf --no-progress; aws s3 cp files/backup.txt s3://$BUCKET/backups/backup.txt --no-progress; echo; aws s3api list-objects-v2 --bucket $BUCKET --query "Contents[].[Key,Size]" --output text; echo; echo "Key:          uploads/lab4-cover.png"; aws s3api head-object --bucket $BUCKET --key uploads/lab4-cover.png --query "{ContentType:ContentType,ETag:ETag,SSE:ServerSideEncryption,Size:ContentLength}"; echo "Object URL:   https://$BUCKET.s3.eu-central-1.amazonaws.com/uploads/lab4-cover.png"
+upload: files/lab4-cover.png to s3://timecapsule-dev-uploads-danilaraetchi/uploads/lab4-cover.png
+upload: files/lab4-spec.pdf to s3://timecapsule-dev-uploads-danilaraetchi/uploads/lab4-spec.pdf
+upload: files/backup.txt to s3://timecapsule-dev-uploads-danilaraetchi/backups/backup.txt
+
+backups/	0
+backups/backup.txt	45
+uploads/	0
+uploads/lab4-cover.png	31375
+uploads/lab4-spec.pdf	21985
+
+Key:          uploads/lab4-cover.png
+{
+    "ContentType": "image/png",
+    "ETag": "\"64359b1ba63aa15c550a28f0bf8bcedb\"",
+    "SSE": "AES256",
+    "Size": 31375
+}
+Object URL:   https://timecapsule-dev-uploads-danilaraetchi.s3.eu-central-1.amazonaws.com/uploads/lab4-cover.png

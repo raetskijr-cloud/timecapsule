@@ -1,0 +1,18 @@
+$ aws s3 ls s3://$BUCKET; echo ---; aws s3 ls s3://$BUCKET/uploads/; echo ---; aws s3 ls s3://$BUCKET --recursive
+                           PRE backups/
+                           PRE uploads/
+---
+                           PRE 2026/
+2026-11-24 03:05:03          0 
+2026-11-24 03:05:27      31375 lab4-cover.png
+2026-11-24 03:05:29      21985 lab4-spec.pdf
+2026-11-24 03:05:38         18 photo.txt
+---
+2026-11-24 03:05:05          0 backups/
+2026-11-24 03:05:30         45 backups/backup.txt
+2026-11-24 03:05:03          0 uploads/
+2026-11-24 03:05:39         17 uploads/2026/10/report-2.txt
+2026-11-24 03:05:39         15 uploads/2026/10/report.txt
+2026-11-24 03:05:27      31375 uploads/lab4-cover.png
+2026-11-24 03:05:29      21985 uploads/lab4-spec.pdf
+2026-11-24 03:05:38         18 uploads/photo.txt

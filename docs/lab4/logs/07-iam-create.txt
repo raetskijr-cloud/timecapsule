@@ -1,0 +1,12 @@
+$ tools/iam-create.sh
+# политика приложения
+timecapsule-dev-app-s3	arn:aws:iam::************:policy/timecapsule-dev-app-s3	v1
+# тестовая роль
+timecapsule-dev-s3-tester	arn:aws:iam::************:role/timecapsule-dev-s3-tester
+# роль сервера + профиль экземпляра
+timecapsule-dev-app-role	arn:aws:iam::************:role/timecapsule-dev-app-role
+timecapsule-dev-app-role
+# timecapsule-dev-s3-tester: прикреплено
+timecapsule-dev-app-s3
+# timecapsule-dev-app-role: прикреплено
+timecapsule-dev-app-s3

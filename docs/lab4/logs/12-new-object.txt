@@ -1,0 +1,17 @@
+$ [app] cd /var/www/timecapsule && php scripts/storage-smoke.php /tmp/lab4-cover.png | grep -E "saved|S3 says|kept"
+saved      : uploads/c5b814a3053607d0aaf3336f54e686cf.png
+S3 says    : HTTP/1.1 206 Partial Content
+S3 says    : Content-Type: image/png
+S3 says    : Content-Disposition: inline; filename="lab4-cover.png"; filename*=UTF-8''lab4-cover.png
+kept       : uploads/c5b814a3053607d0aaf3336f54e686cf.png
+$ [app] source ~/.bashrc; aws s3api list-objects-v2 --bucket $BUCKET --prefix uploads/ --query "Contents[?Size>\`100\`].[Key,Size]" --output text
+uploads/c5b814a3053607d0aaf3336f54e686cf.png	31375
+uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png	16789
+uploads/ec3ad45dfc88e82d27604503d787aff0.png	31375
+uploads/lab4-cover.png	31375
+uploads/lab4-spec.pdf	21985
+# Content-Type новых объектов (смотрит администратор)
+uploads/c5b814a3053607d0aaf3336f54e686cf.png  image/png
+uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png  image/png
+uploads/ec3ad45dfc88e82d27604503d787aff0.png  image/png
+uploads/lab4-cover.png  image/png

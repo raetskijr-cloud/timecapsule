@@ -1,0 +1,5 @@
+$ [app] source ~/.bashrc; aws s3 cp s3://$BUCKET/uploads/no-such-file.txt -
+download failed: s3://timecapsule-dev-uploads-danilaraetchi/uploads/no-such-file.txt to - An error occurred (403) when calling the HeadObject operation: Forbidden
+
+$ [laptop] aws s3 cp s3://$BUCKET/uploads/no-such-file.txt -
+download failed: s3://timecapsule-dev-uploads-danilaraetchi/uploads/no-such-file.txt to - An error occurred (404) when calling the HeadObject operation: Not Found

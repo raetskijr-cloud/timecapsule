@@ -1,0 +1,11 @@
+$ [app] sudo mv /var/www/timecapsule/storage/uploads ~/uploads-backup && ls -d /var/www/timecapsule/storage/uploads ~/uploads-backup 2>&1
+ls: cannot access '/var/www/timecapsule/storage/uploads': No such file or directory
+/home/ec2-user/uploads-backup
+$ [app] cd /var/www/timecapsule && php scripts/storage-smoke.php | grep -E "saved|S3 says|deleted"; curl -s http://localhost/health; echo; curl -s http://localhost/login | grep -o "Files: <code>[^<]*"
+saved      : uploads/64e277933caae7c88d473d7eea5f8fde.pdf
+S3 says    : HTTP/1.1 206 Partial Content
+S3 says    : Content-Type: application/pdf
+S3 says    : Content-Disposition: attachment; filename="__________ smoke.pdf"; filename*=UTF-8''%D0%9E%D1%82%D1%87%D1%91%D1%82%20smoke.pdf
+deleted    : uploads/64e277933caae7c88d473d7eea5f8fde.pdf (delete marker)
+{"status":"ok","db":"ok","hostname":"ip-10-14-0-11.eu-central-1.compute.internal"}
+Files: <code>s3://timecapsule-dev-uploads-danilaraetchi/uploads/

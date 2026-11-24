@@ -1,0 +1,16 @@
+$ [app] source ~/.bashrc; cd /var/www/timecapsule; ls -l storage/uploads; aws s3 sync storage/uploads s3://$BUCKET/uploads/ --dryrun
+total 20
+-rw-r--r--. 1 apache apache 16789 Nov 23 21:27 e5a7fc594c9f74164dff98c3d6d1a84b.png
+(dryrun) upload: storage/uploads/.gitkeep to s3://timecapsule-dev-uploads-danilaraetchi/uploads/.gitkeep
+(dryrun) upload: storage/uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png to s3://timecapsule-dev-uploads-danilaraetchi/uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png
+$ [app] source ~/.bashrc; cd /var/www/timecapsule; sudo $(which aws) s3 sync storage/uploads s3://$BUCKET/uploads/ --no-progress
+upload: storage/uploads/.gitkeep to s3://timecapsule-dev-uploads-danilaraetchi/uploads/.gitkeep
+upload: storage/uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png to s3://timecapsule-dev-uploads-danilaraetchi/uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png
+$ [app] source ~/.bashrc; cd /var/www/timecapsule; sudo $(which aws) s3 sync storage/uploads s3://$BUCKET/uploads/ --dryrun; echo "(повторный --dryrun: пусто = всё в бакете)"
+(повторный --dryrun: пусто = всё в бакете)
+$ [app] source ~/.bashrc; aws s3api head-object --bucket $BUCKET --key uploads/e5a7fc594c9f74164dff98c3d6d1a84b.png --query "{ContentType:ContentType,Size:ContentLength,SSE:ServerSideEncryption}"
+{
+    "ContentType": "image/png",
+    "Size": 16789,
+    "SSE": "AES256"
+}

@@ -1,0 +1,12 @@
+{
+  "Rules": [
+    {
+      "ID": "timecapsule-dev-noncurrent",
+      "Status": "Enabled",
+      "Filter": { "Prefix": "uploads/" },
+      "NoncurrentVersionTransitions": [ { "NoncurrentDays": 30, "StorageClass": "STANDARD_IA" } ],
+      "NoncurrentVersionExpiration": { "NoncurrentDays": 90, "NewerNoncurrentVersions": 2 },
+      "AbortIncompleteMultipartUpload": { "DaysAfterInitiation": 7 }
+    }
+  ]
+}

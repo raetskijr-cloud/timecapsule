@@ -1,0 +1,9 @@
+$ aws s3 ls s3://$BUCKET/uploads/; echo "--- через http://"; aws s3 ls s3://$BUCKET/uploads/ --endpoint-url http://s3.eu-central-1.amazonaws.com
+                           PRE 2026/
+2026-11-24 03:05:03          0 
+2026-11-24 03:05:27      31375 lab4-cover.png
+2026-11-24 03:05:29      21985 lab4-spec.pdf
+2026-11-24 03:05:38         18 photo.txt
+--- через http://
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:iam::************:user/danilaraetchi_student is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" with an explicit deny in a resource-based policy

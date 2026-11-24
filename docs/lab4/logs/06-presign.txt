@@ -1,0 +1,21 @@
+$ tools/presign-test.sh
+# ссылка (подпись обрезана):
+https://timecapsule-dev-uploads-danilaraetchi.s3.eu-central-1.amazonaws.com/uploads/photo.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=<обрезано>&X-Amz-Date=20261124T011008Z&X-Amz-Expires=120&X-Amz-SignedHeaders=host&X-Amz-Signature=<обрезано>
+
+# 1. исходная ссылка сразу:
+HTTP/1.1 200 OK
+ETag: "47020b0e4d4431b7f4ade7c3b1467fc0"
+Content-Type: text/plain
+photo placeholder
+
+# 2. в ссылке photo.txt заменён на notes.txt:
+<Code>SignatureDoesNotMatch</Code>
+<Message>The request signature we calculated does not match the signature you provided. Check your key and signing method.</Message>
+HTTP 403
+
+# 3. исходная ссылка через 126 с:
+<Code>AccessDenied</Code>
+<Message>Request has expired</Message>
+<Expires>2026-11-24T01:12:08Z</Expires>
+<ServerTime>2026-11-24T01:12:15Z</ServerTime>
+HTTP 403

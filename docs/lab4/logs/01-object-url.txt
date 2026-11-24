@@ -1,0 +1,11 @@
+$ curl -s -i https://$BUCKET.s3.eu-central-1.amazonaws.com/uploads/lab4-cover.png | head -20
+HTTP/1.1 403 Forbidden
+x-amz-request-id: JW604KBKDS5E3FEY
+x-amz-id-2: 3pmkIV0V3uR1l61SGLQ9gujdGPC7cl8T1L6O9zu9omrwFi3XYjmgmtSuMPmUmydn2XEFx6NirOoB2l/nKwqiEV8sVwQk4aJT
+Date: Tue, 24 Nov 2026 01:05:14 GMT
+Content-Type: application/xml
+Server: AmazonS3
+Transfer-Encoding: chunked
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>AccessDenied</Code><Message>Access Denied</Message><RequestId>JW604KBKDS5E3FEY</RequestId><HostId>3pmkIV0V3uR1l61SGLQ9gujdGPC7cl8T1L6O9zu9omrwFi3XYjmgmtSuMPmUmydn2XEFx6NirOoB2l/nKwqiEV8sVwQk4aJT</HostId></Error>

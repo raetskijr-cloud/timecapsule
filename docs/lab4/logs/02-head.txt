@@ -1,0 +1,19 @@
+$ aws s3api head-object --bucket $BUCKET --key uploads/lab4-cover.png; aws s3api head-object --bucket $BUCKET --key uploads/2026/10/report.txt
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-11-24T01:05:27+00:00",
+    "ContentLength": 31375,
+    "ETag": "\"64359b1ba63aa15c550a28f0bf8bcedb\"",
+    "ContentType": "image/png",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {}
+}
+{
+    "AcceptRanges": "bytes",
+    "LastModified": "2026-11-24T01:05:39+00:00",
+    "ContentLength": 15,
+    "ETag": "\"b226e1a3649a6073b10d77b8cc66d8f5\"",
+    "ContentType": "text/plain",
+    "ServerSideEncryption": "AES256",
+    "Metadata": {}
+}

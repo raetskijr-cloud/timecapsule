@@ -1,0 +1,75 @@
+$ eval $(aws sts assume-role --role-arn $ROLE_ARN --role-session-name lab4 ...)
+$ aws sts get-caller-identity
+{
+    "UserId": "AROASA5ZQDPIDK6IVEDPK:lab4",
+    "Account": "************",
+    "Arn": "arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4"
+}
+
+$ aws s3 cp test.txt s3://$BUCKET/uploads/test.txt --no-progress
+upload: ./test.txt to s3://timecapsule-dev-uploads-danilaraetchi/uploads/test.txt
+
+$ aws s3 ls s3://$BUCKET/uploads/
+                           PRE 2026/
+2026-11-24 03:05:03          0 
+2026-11-24 03:05:27      31375 lab4-cover.png
+2026-11-24 03:05:29      21985 lab4-spec.pdf
+2026-11-24 03:06:48          3 notes.txt
+2026-11-24 03:05:38         18 photo.txt
+2026-11-24 03:08:44         12 test.txt
+
+$ aws s3 ls s3://$BUCKET
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" because no identity-based policy allows the s3:ListBucket action
+
+$ aws s3 cp s3://$BUCKET/uploads/photo.txt - --no-progress
+photo placeholder
+
+$ aws s3 ls s3://$BUCKET/backups/
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" because no identity-based policy allows the s3:ListBucket action
+
+$ aws s3 cp test.txt s3://$BUCKET/backups/test.txt --no-progress
+upload failed: ./test.txt to s3://timecapsule-dev-uploads-danilaraetchi/backups/test.txt An error occurred (AccessDenied) when calling the PutObject operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi/backups/test.txt" because no identity-based policy allows the s3:PutObject action
+
+$ aws s3api list-object-versions --bucket $BUCKET --prefix uploads/
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectVersions operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:ListBucketVersions on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" because no identity-based policy allows the s3:ListBucketVersions action
+
+# VersionId для команды 8 (смотрит администратор, как "Show versions" в консоли)
+VersionId=zB9YAmVjlCO_9F9735Amie8Lzs8VPeSU
+
+$ aws s3api delete-object --bucket $BUCKET --key uploads/test.txt --version-id zB9YAmVjlCO_9F9735Amie8Lzs8VPeSU
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the DeleteObject operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:DeleteObjectVersion on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi/uploads/test.txt" because no identity-based policy allows the s3:DeleteObjectVersion action
+
+$ aws s3 rm s3://$BUCKET/uploads/test.txt
+delete: s3://timecapsule-dev-uploads-danilaraetchi/uploads/test.txt
+
+$ aws s3 ls s3://$BUCKET/uploads/ --endpoint-url http://s3.eu-central-1.amazonaws.com
+
+aws: [ERROR]: An error occurred (AccessDenied) when calling the ListObjectsV2 operation: User: arn:aws:sts::************:assumed-role/timecapsule-dev-s3-tester/lab4 is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::timecapsule-dev-uploads-danilaraetchi" with an explicit deny in a resource-based policy
+
+$ unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+$ aws sts get-caller-identity --query Arn --output text
+arn:aws:iam::************:user/danilaraetchi_student
+
+# что осталось от test.txt (смотрит администратор)
+$ aws s3api list-object-versions --bucket $BUCKET --prefix uploads/test.txt --query "{Versions:Versions[].[Key,VersionId,IsLatest],DeleteMarkers:DeleteMarkers[].[Key,VersionId,IsLatest]}"
+{
+    "Versions": [
+        [
+            "uploads/test.txt",
+            "zB9YAmVjlCO_9F9735Amie8Lzs8VPeSU",
+            false
+        ]
+    ],
+    "DeleteMarkers": [
+        [
+            "uploads/test.txt",
+            "5QM0vPSXpw6dMHcRBKL06r8X8t53y7Gh",
+            true
+        ]
+    ]
+}
+

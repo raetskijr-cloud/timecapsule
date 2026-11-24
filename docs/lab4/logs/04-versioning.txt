@@ -1,0 +1,6 @@
+$ aws s3api put-bucket-versioning --bucket $BUCKET --versioning-configuration Status=Enabled; aws s3api get-bucket-versioning --bucket $BUCKET; echo "--- версии объектов, загруженных ДО включения"; aws s3api list-object-versions --bucket $BUCKET --prefix uploads/photo.txt --query "Versions[].[Key,VersionId,IsLatest]" --output text
+{
+    "Status": "Enabled"
+}
+--- версии объектов, загруженных ДО включения
+uploads/photo.txt	null	True
