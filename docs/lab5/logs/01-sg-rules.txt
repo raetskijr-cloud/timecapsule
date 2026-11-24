@@ -1,0 +1,8 @@
+$ aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-04fa59efb456b78a3,sg-07772634de3fa6a0b,sg-05dd8f161efce20d9 --query 'SecurityGroupRules[?IsEgress==`false`].[GroupId,IpProtocol,FromPort,ToPort,ReferencedGroupInfo.GroupId,CidrIpv4]' --output table
+---------------------------------------------------------------------------------
+|                          DescribeSecurityGroupRules                           |
++-----------------------+------+-------+-------+------------------------+-------+
+|  sg-04fa59efb456b78a3 |  tcp |  22   |  22   |  sg-09ed2cf34cce84622  |  None |
+|  sg-05dd8f161efce20d9 |  tcp |  5432 |  5432 |  sg-0abcdd1d5c23d1b1a  |  None |
+|  sg-07772634de3fa6a0b |  tcp |  5432 |  5432 |  sg-04fa59efb456b78a3  |  None |
++-----------------------+------+-------+-------+------------------------+-------+

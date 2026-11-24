@@ -1,0 +1,31 @@
+$ aws iam get-policy-version --policy-arn arn:aws:iam::************:policy/timecapsule-dev-rds-stop --version-id v1 --query PolicyVersion.Document --output json; aws iam get-role --role-name timecapsule-dev-scheduler-role --query Role.AssumeRolePolicyDocument --output json; aws iam list-attached-role-policies --role-name timecapsule-dev-scheduler-role --output text
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "StopOnlyAppDatabase",
+            "Effect": "Allow",
+            "Action": "rds:StopDBInstance",
+            "Resource": "arn:aws:rds:eu-central-1:************:db:timecapsule-dev-rds"
+        }
+    ]
+}
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "SchedulerAssumesRole",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "scheduler.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringEquals": {
+                    "aws:SourceAccount": "************"
+                }
+            }
+        }
+    ]
+}
+ATTACHEDPOLICIES	arn:aws:iam::************:policy/timecapsule-dev-rds-stop	timecapsule-dev-rds-stop

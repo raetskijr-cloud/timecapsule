@@ -1,0 +1,17 @@
+$ aws rds describe-db-subnet-groups --query 'DBSubnetGroups[].{Group:DBSubnetGroupName,Status:SubnetGroupStatus,Vpc:VpcId,Subnets:Subnets[].[SubnetIdentifier,SubnetAvailabilityZone.Name]}' --output yaml
+- Group: lab5-db-subnets
+  Status: Complete
+  Subnets:
+  - - subnet-01d369be50c8c821b
+    - eu-central-1b
+  - - subnet-01f453194252b0c3d
+    - eu-central-1a
+  Vpc: vpc-0e546b4458d635288
+- Group: timecapsule-dev-db-subnets
+  Status: Complete
+  Subnets:
+  - - subnet-01d369be50c8c821b
+    - eu-central-1b
+  - - subnet-01f453194252b0c3d
+    - eu-central-1a
+  Vpc: vpc-0e546b4458d635288
