@@ -135,7 +135,9 @@ set in `docker-compose.yml`. The code reads every setting with `config()` in
 | `DB_NAME` | `timecapsule` | |
 | `DB_USER` | `timecapsule` | |
 | `DB_PASSWORD` | `secret` | |
-| `UPLOAD_DIR` | `storage/uploads` | Upload folder. A relative path starts at the project root. |
+| `S3_BUCKET` | none | S3 bucket for attachments (key prefix `uploads/`). Required since LR4. |
+| `AWS_REGION` | `eu-central-1` | Region of the bucket. Keys are not set here: the SDK uses the instance role. |
+| `PRESIGN_TTL_SECONDS` | `300` | Lifetime of a download link, in seconds |
 | `MAX_UPLOAD_MB` | `5` | Maximum attachment size, in MB |
 | `MAIL_DELAY_SECONDS` | `3` | How long the simulated "send e-mail" step takes |
 | `AUTH_ENABLED` | `true` | `false`: no login, everybody is the built-in **Guest** user |
